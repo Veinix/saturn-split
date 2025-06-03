@@ -3,18 +3,20 @@ import {
     layout,
     index,
     type RouteConfig,
+    prefix,
 } from "@react-router/dev/routes";
-import { groupsLoader } from "./Loaders/GroupsLoader";
 
 export default [
     layout("./Layouts/RootLayout.tsx", [
-        layout("./Layouts/HomeLayout.tsx", [
-            index("./Pages/Home.tsx")
+        index("./Pages/Home.tsx"),
+        ...prefix("groups", [
+            index("./Pages/Groups.tsx"),
+            route(":groupId", "./Pages/Groups/OpenedGroup.tsx", [
+                route("transactions", "./Pages/Groups/OpenedGroupRoutes/Transactions.tsx")
+            ]),
         ]),
-        route("groups", "./Pages/Groups.tsx", {
-            loader: groupsLoader
-        }),
         route("profile", "./Pages/Profile.tsx"),
+        route("people", "./Pages/People.tsx"),
     ]),
     route("test", "./Pages/Test.tsx")
 ] satisfies RouteConfig;

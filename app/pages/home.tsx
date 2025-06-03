@@ -1,6 +1,6 @@
 
 import { appConfig } from "~/Utilities/AppConfig";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/Home";
 
 export function meta({ }: Route.MetaArgs) {
     return [

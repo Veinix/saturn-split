@@ -15,15 +15,19 @@ export default function RootLayout() {
                     icon={"🏠"}
                     label="Home">
                 </NavIcon>
-
                 <NavIcon
                     href="/groups"
                     icon={"👥"}
                     label="Groups">
                 </NavIcon>
                 <NavIcon
-                    href="/profile"
+                    href="/people"
                     icon={"👤"}
+                    label="People">
+                </NavIcon>
+                <NavIcon
+                    href="/profile"
+                    icon={"👦"}
                     label="Profile">
                 </NavIcon>
             </nav>

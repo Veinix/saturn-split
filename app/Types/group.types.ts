@@ -1,5 +1,9 @@
 export type Transaction = {
-    type: "expense" | "payment";
+    lender: string,
+    borrower: string,
+    amount: number,
+    transactionType: boolean, // True = Positive = Paid back. False = Negative = Loaned
+    transactionDate?: string,
 }
 export type Group = {
     id: string;
