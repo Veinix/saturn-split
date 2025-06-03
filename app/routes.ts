@@ -1,14 +1,12 @@
 import {
-    type RouteConfig,
     route,
-    index,
     layout,
-    prefix,
+    index,
+    type RouteConfig,
 } from "@react-router/dev/routes";
-import { groupsLoader } from "~/Loaders/groupsLoader";
+import { groupsLoader } from "./Loaders/GroupsLoader";
 
 export default [
-    // Home page
     layout("./Layouts/RootLayout.tsx", [
         layout("./Layouts/HomeLayout.tsx", [
             index("./Pages/Home.tsx")
@@ -18,5 +16,5 @@ export default [
         }),
         route("profile", "./Pages/Profile.tsx"),
     ]),
-
+    route("test", "./Pages/Test.tsx")
 ] satisfies RouteConfig;

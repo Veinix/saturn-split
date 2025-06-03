@@ -1,7 +1,8 @@
 import axios from "axios"
-import { appConfig } from "~/utilities/AppConfig"
+import type { LoaderFunctionArgs } from "react-router"
+import { getAllGroups } from "~/Services/GroupsService"
+import type { Group } from "~/Types/group.types"
 
-export async function groupsLoader() {
-    const res = await axios.get(appConfig.groupsEndpoint)
-    return res.data
+export async function groupsLoader(_: LoaderFunctionArgs): Promise<Group[]> {
+    return await getAllGroups()
 }

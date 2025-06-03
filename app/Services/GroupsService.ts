@@ -1,20 +1,19 @@
-import type { Group } from "~/utilities/types/groupTypes";
-import { appConfig } from "~/utilities/AppConfig";
+import type { Group } from "~/Types/group.types";
+import { appConfig } from "~/Utilities/AppConfig";
 import axios from "axios";
+import api from "./Axios";
 
 
 // Method to get all groups
-// export async function getAllGroups(): Promise<Group[]> {
-//     try {
-//         const endpoint = appConfig.groupsEndpoint
-//         const res = await axios.get(endpoint)
-//         const groups = res.data.json();
-//         return groups
-//     } catch (error) {
-//         console.log("[Group Service] Error fetching groups:", error);
-//         return []
-//     }
-// }
+export async function getAllGroups(): Promise<Group[]> {
+    try {
+        const res = await api.get("/groups")
+        return res.data
+    } catch (error) {
+        console.log("[Group Service] Error fetching groups:", error);
+        return []
+    }
+}
 
     // Method to create a new group
 

@@ -1,5 +1,6 @@
-import type { Route } from ".react-router/types/app/pages/+types/Home";
-import { appConfig } from "~/utilities/AppConfig";
+
+import { appConfig } from "~/Utilities/AppConfig";
+import type { Route } from "./+types/home";
 
 export function meta({ }: Route.MetaArgs) {
     return [

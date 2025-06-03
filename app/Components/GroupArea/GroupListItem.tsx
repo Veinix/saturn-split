@@ -1,4 +1,4 @@
-import type { Group } from "~/utilities/types/groupTypes"
+import type { Group } from "~/Types/group.types"
 interface GroupListItemProps extends Group { }
 
 function GroupListItem({ id, name, description, members, transactions, totalBalance, groupIcon }: GroupListItemProps) {
