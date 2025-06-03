@@ -1,22 +1,21 @@
-import { useState } from "react";
-import type { Route } from "./+types/home";
+import type { Route } from ".react-router/types/app/pages/+types/Home";
+import { appConfig } from "~/utilities/AppConfig";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Saturn Split" },
+        { title: "Saturn Split | Home" },
         { name: "description", content: "Welcome to Saturn Split!" },
     ];
 }
 
 export default function Home() {
-    const [user, setUser] = useState<boolean>(false)
+
+    const firstName = appConfig.testUser.name.split(" ")[0];
     return (
-        user ?
-            <div>
-                <h1> Hello World, user exists</h1>
-            </div>
-            : <div>
-                <h2> Goodbye World, No user found</h2>
-            </div>
+        <div>
+            <span className="text-4xl"> Welcome back,</span>
+            <span className="text-4xl text-amber-600"> {firstName}</span>
+        </div>
+
     )
 }
