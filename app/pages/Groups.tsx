@@ -26,16 +26,19 @@ export default function Groups() {
                 flex flex-col pt-7 gap-4 
                 md:w-3xl md:flex-row
                 `}>
-                {isLoading ? <LoadingScreen />
-                    : allGroups?.length > 0
+                {isLoading
+                    ? <LoadingScreen />
+                    : allGroups.length > 0
                         ? allGroups.map((group) => {
                             return <GroupListItem
                                 key={group.id + group.name}
                                 id={group.id}
                                 name={group.name}
-                                members={group.members}
-                                groupIcon={group.groupIcon ? group.groupIcon : group.name[0].toUpperCase()}
-                            />
+                                // members={group.members}
+                                groupIcon={group.name[0].toUpperCase()}
+                                created_by={null}
+                                description={null}
+                                icon_url={null} />
                         })
                         : <span> No Groups found! Make one</span>}
             </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { appConfig } from "~/Utilities/AppConfig";
 
 const api = axios.create({
-    baseURL: appConfig.postmanApiUrl,
+    baseURL: appConfig.baseApiEndpoint,
     headers: {
         "Content-Type": "application/json",
     }

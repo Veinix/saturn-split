@@ -8,6 +8,7 @@ import api from "./Axios";
 export async function getAllGroups(): Promise<Group[]> {
     try {
         const res = await api.get("/groups")
+        console.log(res.data)
         return res.data
 
     } catch (error) {

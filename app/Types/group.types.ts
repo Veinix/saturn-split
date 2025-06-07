@@ -6,11 +6,9 @@ export type Transaction = {
     transactionDate?: string,
 }
 export type Group = {
-    id: string;
-    name: string;
-    members: string[];
-    description?: string;
-    groupIcon?: string;
-    transactions?: Transaction[];
-    totalBalance?: number;
+    created_by: string | null
+    description: string | null
+    icon_url: string | null
+    id: string
+    name: string
 }
