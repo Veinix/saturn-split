@@ -47,9 +47,9 @@ export default function Home() {
         </div>
     )
     else return (
-        <>
+        <div className="p-5">
             <span className="text-4xl"> Welcome back, </span>
             <span className="text-4xl text-amber-600"> {user.name.split(" ")[0]}</span>
-        </>
+        </div>
     )
 }

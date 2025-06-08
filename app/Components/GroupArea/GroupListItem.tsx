@@ -1,10 +1,10 @@
 import { NavLink } from "react-router"
 import type { Group } from "~/Types/group.types"
 interface GroupListItemProps extends Group {
-    groupIcon: string
+    icon: string
 }
 
-function GroupListItem({ id, name, description, groupIcon }: GroupListItemProps) {
+function GroupListItem({ id, name, description, icon }: GroupListItemProps) {
     return (
         <NavLink
             to={id}
@@ -15,7 +15,7 @@ function GroupListItem({ id, name, description, groupIcon }: GroupListItemProps)
         hover:bg-amber-800 transition-colors duration-300 hover:text-white`}>
             <div className="flex items-center justify-center">
                 <div className="border-2 border-amber-800 group-hover:border-black transition-colors duration-300 flex items-center justify-center w-12 h-12 bg-amber-800 rounded-full mr-4 text-black">
-                    <span className="text-2xl font-bold">{groupIcon}</span>
+                    <span className="text-2xl font-bold">{icon}</span>
                 </div>
             </div>
             <div className="flex flex-col gap-1">

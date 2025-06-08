@@ -8,7 +8,7 @@ export type Transaction = {
 export type Group = {
     created_by: string | null
     description: string | null
-    icon_url: string | null
+    icon: string | null
     id: string
     name: string
 }

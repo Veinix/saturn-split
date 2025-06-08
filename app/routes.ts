@@ -12,8 +12,8 @@ export default [
         ...prefix("groups", [
             index("./Pages/Groups.tsx"),
             route(":groupId", "./Pages/Groups/OpenedGroup.tsx", [
-                index("./Pages/Groups/OpenedGroupRoutes/Transactions.tsx")
-                // route("members", )
+                index("./Pages/Groups/OpenedGroupRoutes/Transactions.tsx"),
+                route("members", "./Pages/Groups/OpenedGroupRoutes/Members.tsx")
             ]),
         ]),
         route("profile", "./Pages/Profile.tsx"),

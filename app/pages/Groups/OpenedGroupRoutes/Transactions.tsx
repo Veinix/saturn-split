@@ -19,7 +19,7 @@ export default function Transactions() {
     const displayName = (transactionMember: string): string => {
         return transactionMember === user?.name.split(" ")[0] ? "You" : transactionMember
     }
-    
+
     return (
         transactions && <div>
             {transactions.map((transaction, index) => {
