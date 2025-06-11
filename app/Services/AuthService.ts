@@ -1,13 +1,28 @@
-import type { Profile } from "~/Types/auth.types"
+import type { RegisterUser, LoginDetails } from "~/Types/auth.types"
+import api from "./Axios"
 
 class AuthService {
-    async getCurrentUser() {
-        const user: Profile = {
-            id: "c5590187-d38d-4eb2-9889-200e910968b8",
-            name: "David Aviles",
-            role: "developer",
+    async loginUser({ email, password }: LoginDetails) {
+        try {
+            const res = await api.get("/auth/login")
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.log("[Auth Service] Error logging in", error)
         }
-        return await user
+    }
+
+    async logoutUser() {
+        await api.get("/auth/logout")
+    }
+
+    async registerUser(userInfo: RegisterUser) {
+        try {
+            const res = await api.post("/auth/register", { userInfo })
+
+        } catch (error) {
+            console.log("[Auth Service] Error registering", error)
+        }
     }
 }
 

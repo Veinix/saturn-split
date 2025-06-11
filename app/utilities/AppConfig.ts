@@ -19,6 +19,8 @@ class AppConfig {
         name: "New Israeli Shekel",
         ticker: "ILS"
     }
+
+    public localStorageJWTKey: string = "jwt_session"
 }
 
 export const appConfig = new AppConfig()

@@ -1,62 +1,66 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import authService from "~/Services/AuthService";
-import type { AuthContextType, AuthStatus, Profile } from "~/Types/auth.types";
-
+import api from "~/Services/Axios";
+import type { AuthContextType, LoginDetails, SessionDetails } from "~/Types/auth.types";
+import { tokenUtils } from "~/Utilities/AuthUtilities";
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
-    status: "loading",
-    login: async (userData: Profile) => { },
+    loading: true,
+    login: async (loginDetails: LoginDetails) => { },
     logout: async () => { },
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<Profile | null>(null);
-    const [status, setStatus] = useState<AuthStatus>("loading");
+    const [user, setUser] = useState<SessionDetails | null>(null);
+    const [token, setToken] = useState<string | null>("")
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        // Load from localStorage or Supabase session
-        async function fetchCurrentUser() {
+        async function init() {
             try {
-                const stored = localStorage.getItem("profile");
+                tokenUtils.initTokenFromStorage()
+                const stored = tokenUtils.getToken()
                 if (stored) {
                     setUser(JSON.parse(stored))
-                    setStatus("authenticated")
+                    setLoading(false)
                 } else {
-                    const currentUser = await authService.getCurrentUser();
-                    if (currentUser) {
-                        setUser(currentUser);
-                        setStatus("authenticated");
-                        localStorage.setItem("profile", JSON.stringify(currentUser))
-                    } else {
-                        setUser(null);
-                        setStatus("unauthenticated");
-                    }
+                    setUser(null);
+                    setLoading(false);
                 }
             } catch (err) {
                 // if unauthorized or error, treat as unauthenticated
                 setUser(null);
-                setStatus("unauthenticated");
+                setLoading(false);
             }
         }
-        fetchCurrentUser()
+        init()
     }, []);
 
-    const login = (userData: Profile) => {
-        setUser(userData);
-        setStatus("authenticated")
-        localStorage.setItem("profile", JSON.stringify(userData));
-
+    const login = async ({ email, password }: LoginDetails) => {
+        setLoading(true);
+        try {
+            const res = await api.post("/auth/login", { email, password });
+            setToken(res.data.token);
+            setUser(res.data.user);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const logout = () => {
-        setUser(null);
-        setStatus("unauthenticated")
-        localStorage.removeItem("profile");
+    const logout = async () => {
+        setLoading(true);
+        try {
+            setToken(null);
+            setUser(null);
+            // Optionally call your backend to invalidate token/server-side session
+            await api.post("/auth/logout");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ user, status, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
