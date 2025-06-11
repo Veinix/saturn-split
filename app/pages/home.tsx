@@ -2,7 +2,7 @@
 import LoadingScreen from "~/Components/General/LoadingScreen";
 import type { Route } from "./+types/Home";
 import { useAuth } from "~/Context/authContext";
-import Register from "~/Components/AuthArea/Register";
+import RegisterFields from "~/Components/AuthArea/RegisterFields";
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -24,7 +24,7 @@ export default function Home() {
     if (!user) return (
         <div className="flex items-center justify-center flex-col mt-10">
             <span className="text-4xl mb-10">Oi cunt, you not logged in innit?</span>
-            <Register />
+            <RegisterFields />
         </div>
     )
     else return (
