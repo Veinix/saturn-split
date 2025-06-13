@@ -1,66 +1,83 @@
+import api from "@app/Services/Axios";
+import type { AuthContextType, LoginDetails, RegisterDetails, SessionDetails } from "@app/Types/auth.types";
+import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import api from "~/Services/Axios";
-import type { AuthContextType, LoginDetails, SessionDetails } from "~/Types/auth.types";
-import { tokenUtils } from "~/Utilities/AuthUtilities";
+import { redirect, useNavigate } from "react-router";
 
 const AuthContext = createContext<AuthContextType>({
-    user: null,
+    session: null,
     loading: true,
     login: async (loginDetails: LoginDetails) => { },
     logout: async () => { },
+    register: async (registerDetails: RegisterDetails) => { }
 });
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<SessionDetails | null>(null);
+export default function AuthProvider({ children }: { children: ReactNode }) {
+    const [session, setSession] = useState<SessionDetails | null>(null);
     const [token, setToken] = useState<string | null>("")
     const [loading, setLoading] = useState<boolean>(false);
-
+    const navigate = useNavigate()
     useEffect(() => {
         async function init() {
             try {
                 tokenUtils.initTokenFromStorage()
                 const stored = tokenUtils.getToken()
                 if (stored) {
-                    setUser(JSON.parse(stored))
+                    const decodedToken = tokenUtils.decodeAuthToken(stored)
+                    setToken(stored)
+                    setSession(decodedToken)
                     setLoading(false)
                 } else {
-                    setUser(null);
+                    setSession(null);
                     setLoading(false);
                 }
             } catch (err) {
-                // if unauthorized or error, treat as unauthenticated
-                setUser(null);
+                setSession(null);
                 setLoading(false);
             }
         }
         init()
     }, []);
 
-    const login = async ({ email, password }: LoginDetails) => {
+    const login = async ({ username, password }: LoginDetails) => {
         setLoading(true);
         try {
-            const res = await api.post("/auth/login", { email, password });
+            const res = await api.post("/auth/login", { username, password });
             setToken(res.data.token);
-            setUser(res.data.user);
-        } finally {
+            setSession(res.data.user);
+            await tokenUtils.setToken(res.data.token)
+            // redirect("./")
+        } catch (error) {
+            console.log(error)
+        }
+        finally {
             setLoading(false);
         }
-    };
+    }
 
     const logout = async () => {
         setLoading(true);
         try {
-            setToken(null);
-            setUser(null);
-            // Optionally call your backend to invalidate token/server-side session
+            await tokenUtils.deleteToken()
             await api.post("/auth/logout");
+            setToken(null);
+            setSession(null);
+            // redirect("./")
         } finally {
             setLoading(false);
         }
-    };
+    }
+
+    const register = async (registerDetails: RegisterDetails) => {
+        try {
+
+        } catch (error) {
+
+        }
+    }
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ session, loading, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     );

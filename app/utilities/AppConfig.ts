@@ -23,4 +23,5 @@ class AppConfig {
     public localStorageJWTKey: string = "jwt_session"
 }
 
-export const appConfig = new AppConfig()
+const appConfig = new AppConfig()
+export default appConfig

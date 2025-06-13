@@ -1,5 +1,5 @@
+import type { Group } from "@app/Types/group.types"
 import { NavLink } from "react-router"
-import type { Group } from "~/Types/group.types"
 interface GroupListItemProps extends Group {
     icon: string
 }

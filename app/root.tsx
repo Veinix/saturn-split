@@ -43,7 +43,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function HydrateFallback() {
-    return <LoadingScreen />;
+    return <div className="w-screen h-screen">
+        <LoadingScreen />;
+    </div>
 }
 
 export default function App() {

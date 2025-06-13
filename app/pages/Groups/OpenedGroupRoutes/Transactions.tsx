@@ -1,7 +1,8 @@
+import { useAuth } from "@app/Context/authContext";
+import type { Transaction } from "@app/Types/group.types";
+import appConfig from "@app/Utilities/AppConfig";
 import { useOutletContext } from "react-router";
-import { useAuth } from "~/Context/authContext";
-import type { Transaction } from "~/Types/group.types";
-import { appConfig } from "~/Utilities/AppConfig";
+
 
 type ContextType = {
     id: string;
@@ -14,10 +15,12 @@ type ContextType = {
 }
 export default function Transactions() {
     const { transactions } = useOutletContext<ContextType>()
-    const { user } = useAuth()
+    const { session } = useAuth()
 
+    // Need to use IDs, not just names. 
+    // Works for now because no duplicates but should fix
     const displayName = (transactionMember: string): string => {
-        return transactionMember === user?.name.split(" ")[0] ? "You" : transactionMember
+        return transactionMember === session?.userData.partialName.split(" ")[0] ? "You" : transactionMember
     }
 
     return (

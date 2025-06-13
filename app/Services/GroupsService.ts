@@ -1,4 +1,4 @@
-import type { Group } from "~/Types/group.types";
+import type { Group } from "@app/Types/group.types";
 import api from "./Axios";
 
 // ****************************

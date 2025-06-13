@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-interface UseScrollUpProps {
-    tolerance: number
-}
 function useScrollUp(tolerance: number) {
     const [showTopBtn, setShowTopBtn] = useState(false);
 

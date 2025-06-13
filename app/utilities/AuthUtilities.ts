@@ -1,4 +1,5 @@
-import { appConfig } from "./AppConfig";
+import type { SessionDetails } from "@app/Types/auth.types";
+import appConfig from "./AppConfig";
 
 let inMemoryToken: string | null = null;
 
@@ -15,7 +16,20 @@ class TokenUtils {
         return storedToken ? JSON.parse(storedToken) : null;
     }
 
-    // Call this on app mount to initialize the memory from storage if needed
+    deleteToken() {
+        localStorage.removeItem(appConfig.localStorageJWTKey)
+    }
+
+    decodeAuthToken(token: string): SessionDetails {
+        const [, payload] = token.split('.');
+        if (!payload) {
+            throw new Error('Invalid JWT');
+        }
+        const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+        const json = atob(base64);
+        return JSON.parse(json);
+    }
+
     initTokenFromStorage() {
         inMemoryToken = localStorage.getItem(appConfig.localStorageJWTKey);
     }
@@ -23,4 +37,6 @@ class TokenUtils {
 
 const tokenUtils = new TokenUtils()
 
-export { tokenUtils }
+export {
+    tokenUtils
+}

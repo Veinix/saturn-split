@@ -1,8 +1,9 @@
+import LoadingScreen from "@app/Components/General/LoadingScreen";
+import { useAuth } from "@app/Context/authContext";
+import { tokenUtils } from "@app/Utilities/AuthUtilities";
+import { redirect } from "react-router";
+import type { Route } from "../+types/root";
 
-import LoadingScreen from "~/Components/General/LoadingScreen";
-import type { Route } from "./+types/Home";
-import { useAuth } from "~/Context/authContext";
-import RegisterFields from "~/Components/AuthArea/RegisterFields";
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -10,27 +11,26 @@ export function meta({ }: Route.MetaArgs) {
         { name: "description", content: "Welcome to Saturn Split!" },
     ];
 }
+
+export async function clientLoader() {
+    const token = tokenUtils.getToken()
+    if (!token) throw redirect("/auth/login")
+
+}
+clientLoader.hydrate = true as const;
+
 export function HydrateFallback() {
     return <LoadingScreen />;
 }
-export async function loader() {
-
-}
-
 
 export default function Home() {
-    const { user, loading, logout } = useAuth()
+    const { session, loading } = useAuth()
     if (loading) return <LoadingScreen />
-    if (!user) return (
-        <div className="flex items-center justify-center flex-col mt-10">
-            <span className="text-4xl mb-10">Oi cunt, you not logged in innit?</span>
-            <RegisterFields />
-        </div>
-    )
+    if (!session) return <div>idk test</div>
     else return (
         <div className="p-5">
             <span className="text-4xl"> Welcome back, </span>
-            <span className="text-4xl text-amber-600"> {user.full_name.split(" ")[0]}</span>
+            <span className="text-4xl text-amber-600"> {session?.userData.partialName.split(" ")[0]}</span>
         </div>
     )
 }

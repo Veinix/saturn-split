@@ -1,9 +1,9 @@
 
+import LoadingScreen from "@app/Components/General/LoadingScreen";
+import GroupListItem from "@app/Components/GroupArea/GroupListItem";
+import { getAllGroups } from "@app/Services/GroupsService";
+import type { Group } from "@app/Types/group.types";
 import { useLoaderData, useNavigation } from "react-router";
-import LoadingScreen from "~/Components/General/LoadingScreen";
-import GroupListItem from "~/Components/GroupArea/GroupListItem";
-import type { Group } from "~/Types/group.types";
-import { getAllGroups } from "~/Services/GroupsService";
 
 export async function loader() {
     return await getAllGroups()

@@ -1,8 +1,8 @@
-import type { RegisterUser, LoginDetails } from "~/Types/auth.types"
+import type { LoginDetails, RegisterUser } from "@app/Types/auth.types"
 import api from "./Axios"
 
 class AuthService {
-    async loginUser({ email, password }: LoginDetails) {
+    async loginUser({ username, password }: LoginDetails) {
         try {
             const res = await api.get("/auth/login")
             console.log(res.data)

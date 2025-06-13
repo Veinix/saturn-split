@@ -1,6 +1,7 @@
+import appConfig from "@app/Utilities/AppConfig";
+import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import axios from "axios";
-import { appConfig } from "~/Utilities/AppConfig";
-import { tokenUtils } from "~/Utilities/AuthUtilities";
+
 
 const api = axios.create({
     baseURL: appConfig.baseApiEndpoint,

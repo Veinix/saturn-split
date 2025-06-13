@@ -1,9 +1,10 @@
 
 export type AuthContextType = {
-    user: SessionDetails | null;
+    session: SessionDetails | null;
     loading: boolean;
     login: (loginDetails: LoginDetails) => void;
     logout: () => void;
+    register: (registerDetails: RegisterDetails) => void
 };
 
 export enum UserRoles {
@@ -15,7 +16,6 @@ export enum UserRoles {
 export type User = {
     id: string,
     username: string,
-    email: string,
     password: string,
     phone_number?: string,
     full_name: string,
@@ -26,9 +26,20 @@ export type User = {
 export type RegisterUser = Omit<User, "id">
 
 export type LoginDetails = {
-    email: string,
+    username: string,
     password: string,
 }
 
-export type SessionDetails = Pick<User, "id" | "full_name" | "favorite_color" | "role"> & { jwt: string }
+export type RegisterDetails = Omit<User, "id">
 
+export type SessionDetails = {
+    userData: {
+        partialName: string,
+        role: UserRoles,
+        userId: string,
+        username: string,
+        favoriteColor: string
+    },
+    iat: number,
+    exp: number
+}

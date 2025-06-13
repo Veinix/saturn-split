@@ -1,8 +1,9 @@
 
+import useScrollUp from "@app/Hooks/useScrollUp";
+import appConfig from "@app/Utilities/AppConfig";
+import testConstants from "@app/Utilities/TestConstants";
 import { NavLink, Outlet } from "react-router";
-import useScrollUp from "~/Hooks/useScrollUp";
-import { appConfig } from "~/Utilities/AppConfig";
-import testConstants from "~/Utilities/TestConstants";
+
 
 function OpenedGroup() {
     const singleVar = testConstants.testSingleGroup

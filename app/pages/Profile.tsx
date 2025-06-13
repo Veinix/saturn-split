@@ -1,12 +1,12 @@
+import { useAuth } from '@app/Context/authContext'
 import { useNavigate } from 'react-router'
-import { useAuth } from '~/Context/authContext'
 
 function profile() {
     const { logout } = useAuth()
     const navigate = useNavigate()
-    const handleClick = () => {
+    const handleClick = async () => {
+        await logout()
         navigate("/")
-        logout()
     }
     return (
         <div className="flex items-center justify-center h-1/2">

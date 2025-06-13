@@ -1,6 +1,7 @@
+import Navbar from "@app/Components/LayoutArea/Navbar";
+import AuthProvider from "@app/Context/authContext";
 import { Outlet } from "react-router";
-import Navbar from "~/Components/LayoutArea/Navbar";
-import { AuthProvider } from "~/Context/authContext";
+
 
 export default function RootLayout() {
     return (
