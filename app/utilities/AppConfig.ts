@@ -1,8 +1,10 @@
+import { LanguageOptions } from "./i18n"
+
 class AppConfig {
     private testUsername: string = "aviles"
     private testPassword: string = "password"
     private testName: string = "David Aviles"
-    
+
     public testUser = {
         username: this.testUsername,
         password: this.testPassword,
@@ -19,6 +21,8 @@ class AppConfig {
         name: "New Israeli Shekel",
         ticker: "ILS"
     }
+
+    public defaultLanguage = LanguageOptions.English
 
     public localStorageJWTKey: string = "jwt_session"
 }

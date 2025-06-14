@@ -1,5 +1,9 @@
-class InternationalizationAndLocalization {
-
+export enum LanguageOptions {
+    English = "English",
+    Hebrew = "Hebrew"
 }
 
-const i18n = new InternationalizationAndLocalization()
+export enum Currencies {
+    ILS = "ILS",
+    USD = "USD"
+}
