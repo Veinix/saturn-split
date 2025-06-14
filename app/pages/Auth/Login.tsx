@@ -1,24 +1,32 @@
 import LoadingScreen from "@app/Components/General/LoadingScreen"
-import { useAuth } from "@app/Context/authContext"
+import { useAuth } from "@app/Hooks/useAuth"
 import useLoginHandler from "@app/Hooks/useLoginHandler"
 import type { LoginDetails } from "@app/Types/auth.types"
 import type { ChangeEvent, FormEvent } from "react"
+import { redirect, replace, useNavigate } from "react-router"
 
 function Login() {
     const { login, loading } = useAuth()
     const { formFields, handleInputChange, validatePassword, validateUsername } = useLoginHandler()
-
-    const handleSubmit = (e: FormEvent) => {
+    const navigate = useNavigate()
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        const validPassword = validatePassword(formFields.password.value)
-        const validUsername = validateUsername(formFields.username.value)
-        if (validPassword && validUsername) {
-            const loginDetails: LoginDetails = {
-                username: formFields.username.value,
-                password: formFields.password.value
+        try {
+            const validPassword = validatePassword(formFields.password.value)
+            const validUsername = validateUsername(formFields.username.value)
+            if (validPassword && validUsername) {
+                const loginDetails: LoginDetails = {
+                    username: formFields.username.value,
+                    password: formFields.password.value
+                }
+                await login(loginDetails)
+                navigate("/")
             }
-            login(loginDetails)
+        } catch (error) {
+            console.error("Login failed:", error)
+            redirect("/auth/login")
         }
+
     }
     return (
         <div className="flex items-center justify-center flex-col mx-10 my-7">

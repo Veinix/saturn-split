@@ -1,19 +1,15 @@
-import AuthProvider, { useAuth } from "@app/Context/authContext";
-import { Outlet, redirect } from "react-router";
+import AuthProvider from "@app/Context/Auth/authContext";
+import { Outlet } from "react-router";
 
 
 
 export default function AuthLayout() {
-    const { session } = useAuth()
-    if (session) redirect("/")
     return (
-        <AuthProvider>
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="w-10/12 h-10/12 md:w-1/3 md:h-1/3 flex flex-col border-amber-600 border rounded-2xl items-center">
-                    <Outlet />
-                </div>
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="w-10/12 h-10/12 md:w-1/3 md:h-1/3 flex flex-col border-amber-600 border rounded-2xl items-center">
+                <Outlet />
             </div>
-        </AuthProvider>
+        </div>
     )
 }
 

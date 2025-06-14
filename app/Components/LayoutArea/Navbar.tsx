@@ -1,10 +1,9 @@
-import { useAuth } from "@app/Context/authContext"
+
 import NavIcon from "../NavIcon"
 
 
 export default function Navbar() {
-    const { session } = useAuth()
-    if (!session) return
+   
     return (
         <nav
             className=" 

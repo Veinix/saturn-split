@@ -1,4 +1,4 @@
-import { useAuth } from "@app/Context/authContext";
+import { useAuth } from "@app/Context/Auth/authContext";
 import type { Transaction } from "@app/Types/group.types";
 import appConfig from "@app/Utilities/AppConfig";
 import { useOutletContext } from "react-router";

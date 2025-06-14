@@ -1,7 +1,7 @@
-import { useAuth } from '@app/Context/authContext'
+import { useAuth } from "@app/Hooks/useAuth"
 import { useNavigate } from 'react-router'
 
-function profile() {
+export default function Profile() {
     const { logout } = useAuth()
     const navigate = useNavigate()
     const handleClick = async () => {
@@ -15,5 +15,3 @@ function profile() {
         </div>
     )
 }
-
-export default profile

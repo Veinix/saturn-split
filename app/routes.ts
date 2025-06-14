@@ -7,6 +7,7 @@ import {
 } from "@react-router/dev/routes";
 import authRoutes from "./Routes/authRoutes";
 import groupRoutes from "./Routes/groupRoutes";
+import otherRoutes from "./Routes/otherRoutes";
 
 export default [
     layout("./Layouts/RootLayout.tsx", [
@@ -19,5 +20,6 @@ export default [
         route("people", "./Pages/People.tsx"),
     ]),
     ...prefix("auth", authRoutes),
+    ...prefix("/*", otherRoutes)
 
 ] satisfies RouteConfig;

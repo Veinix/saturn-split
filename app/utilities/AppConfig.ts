@@ -2,7 +2,7 @@ class AppConfig {
     private testUsername: string = "aviles"
     private testPassword: string = "password"
     private testName: string = "David Aviles"
-
+    
     public testUser = {
         username: this.testUsername,
         password: this.testPassword,

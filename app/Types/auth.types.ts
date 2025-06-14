@@ -1,15 +1,7 @@
 
-export type AuthContextType = {
-    session: SessionDetails | null;
-    loading: boolean;
-    login: (loginDetails: LoginDetails) => void;
-    logout: () => void;
-    register: (registerDetails: RegisterDetails) => void
-};
-
 export enum UserRoles {
     Developer = "developer",
-    Manager = "manager",
+    Admin = "admin",
     User = "user",
 }
 
@@ -32,7 +24,7 @@ export type LoginDetails = {
 
 export type RegisterDetails = Omit<User, "id">
 
-export type SessionDetails = {
+export type SessionToken = {
     userData: {
         partialName: string,
         role: UserRoles,
@@ -43,3 +35,35 @@ export type SessionDetails = {
     iat: number,
     exp: number
 }
+
+export type Session = Omit<SessionToken, "iat" | "exp">;
+
+export type AuthState = {
+    session: SessionToken | null,
+    token: string | null,
+    loading: boolean,
+    error?: any
+
+};
+
+export type AuthContextType = AuthState & {
+    login: (loginDetails: LoginDetails) => void;
+    logout: () => void;
+    register: (registerDetails: RegisterDetails) => void
+};
+
+export enum AuthActionEnum {
+    LoginRequest = "LOGIN_REQUEST",
+    LoginSuccess = "LOGIN_SUCCESS",
+    LoginFailure = "LOGIN_FAILURE",
+    Logout = "LOGOUT",
+    SetLoading = "SET_LOADING",
+    Refresh = "REFRESH_TOKEN",
+}
+
+export type AuthAction =
+    | { type: AuthActionEnum.Logout }
+    | { type: AuthActionEnum.LoginRequest }
+    | { type: AuthActionEnum.LoginSuccess }
+    | { type: AuthActionEnum.LoginFailure }
+    | { type: AuthActionEnum.Refresh; payload: { token: string; session: SessionToken } };

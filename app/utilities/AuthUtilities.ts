@@ -1,9 +1,10 @@
-import type { SessionDetails } from "@app/Types/auth.types";
+import type { SessionToken } from "@app/Types/auth.types";
 import appConfig from "./AppConfig";
 
 let inMemoryToken: string | null = null;
 
 class TokenUtils {
+
     setToken(token: string | null) {
         inMemoryToken = token;
         token ? localStorage.setItem(appConfig.localStorageJWTKey, JSON.stringify(token))
@@ -20,7 +21,7 @@ class TokenUtils {
         localStorage.removeItem(appConfig.localStorageJWTKey)
     }
 
-    decodeAuthToken(token: string): SessionDetails {
+    decodeAuthToken(token: string): SessionToken {
         const [, payload] = token.split('.');
         if (!payload) {
             throw new Error('Invalid JWT');
