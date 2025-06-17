@@ -53,17 +53,18 @@ export type AuthContextType = AuthState & {
 };
 
 export enum AuthActionEnum {
-    LoginRequest = "LOGIN_REQUEST",
-    LoginSuccess = "LOGIN_SUCCESS",
-    LoginFailure = "LOGIN_FAILURE",
+    Login = "LOGIN",
     Logout = "LOGOUT",
+    Register = "REGISTER",
     SetLoading = "SET_LOADING",
-    Refresh = "REFRESH_TOKEN",
+    RefreshToken = "REFRESH_TOKEN",
+    SetToken = "SET_TOKEN",
 }
 
 export type AuthAction =
     | { type: AuthActionEnum.Logout }
-    | { type: AuthActionEnum.LoginRequest }
-    | { type: AuthActionEnum.LoginSuccess }
-    | { type: AuthActionEnum.LoginFailure }
-    | { type: AuthActionEnum.Refresh; payload: { token: string; session: SessionToken } };
+    | { type: AuthActionEnum.Login, payload: SessionToken }
+    | { type: AuthActionEnum.Register }
+    | { type: AuthActionEnum.SetLoading, payload: boolean }
+    | { type: AuthActionEnum.RefreshToken; payload: { token: string; session: SessionToken } }
+    | { type: AuthActionEnum.SetToken; payload: { token: string} }

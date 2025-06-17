@@ -28,7 +28,9 @@ class TokenUtils {
         }
         const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
         const json = atob(base64);
-        return JSON.parse(json);
+        const parsed = JSON.parse(json)
+        console.log(parsed)
+        return parsed
     }
 
     initTokenFromStorage() {

@@ -1,4 +1,3 @@
-import authService from "@app/Services/AuthService";
 import { type AuthState, type AuthAction, AuthActionEnum } from "@app/Types/auth.types";
 
 export const initialAuthState: AuthState = {
@@ -10,24 +9,15 @@ export const initialAuthState: AuthState = {
 export function authReducer(state: AuthState, action: AuthAction): AuthState {
     switch (action.type) {
 
-        case AuthActionEnum.LoginRequest:
+        case AuthActionEnum.Login:
             return {
                 ...state,
-                loading: true,
+                session: action.payload
             };
-        case AuthActionEnum.LoginSuccess:
+
+        case AuthActionEnum.Register:
             return {
                 ...state,
-                // token: action.payload.token,
-                // session: action.payload.session,
-                loading: false,
-            };
-        case AuthActionEnum.LoginFailure:
-            return {
-                ...state,
-                token: null,
-                session: null,
-                loading: false,
             };
 
         case AuthActionEnum.Logout:
@@ -38,11 +28,22 @@ export function authReducer(state: AuthState, action: AuthAction): AuthState {
                 loading: false,
             };
 
-        case AuthActionEnum.Refresh:
+        case AuthActionEnum.RefreshToken:
             return {
                 ...state,
                 token: action.payload.token,
                 session: action.payload.session,
+            };
+        case AuthActionEnum.SetToken:
+            return {
+                ...state,
+                token: action.payload.token
+
+            }
+        case AuthActionEnum.SetLoading:
+            return {
+                ...state,
+                loading: action.payload
             };
 
         default:
