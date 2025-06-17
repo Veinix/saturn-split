@@ -1,11 +1,16 @@
 import Navbar from "@app/Components/LayoutArea/Navbar";
-import { useAuth } from "@app/Hooks/useAuth";
-import { Outlet } from "react-router";
+import { tokenUtils } from "@app/Utilities/AuthUtilities";
+import { Outlet, redirect } from "react-router";
 
+export async function clientLoader() {
+    const token = tokenUtils.getToken()
+    if (!token) {
+        throw redirect("/")
+    }
+}
 
 export default function RootLayout() {
-    const { session } = useAuth()
-    if (!session) return null
+
     return (
         <div className='min-h-screen flex flex-col'>
             <Navbar />

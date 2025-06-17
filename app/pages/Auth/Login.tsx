@@ -2,13 +2,24 @@ import LoadingScreen from "@app/Components/General/LoadingScreen"
 import { useAuth } from "@app/Hooks/useAuth"
 import useLoginHandler from "@app/Hooks/useLoginHandler"
 import type { LoginDetails } from "@app/Types/auth.types"
-import type { ChangeEvent, FormEvent } from "react"
-import { redirect, replace, useNavigate } from "react-router"
+import { tokenUtils } from "@app/Utilities/AuthUtilities"
+import type { FormEvent } from "react"
+import { Navigate, redirect, useNavigate } from "react-router"
 
-function Login() {
-    const { login, loading } = useAuth()
+export async function Loader() {
+    const token = await tokenUtils.getToken()
+    if (token) {
+        throw redirect("/")
+    }
+}
+
+export default function Login() {
+    const { login, loading, session } = useAuth()
+
+
     const { formFields, handleInputChange, validatePassword, validateUsername } = useLoginHandler()
     const navigate = useNavigate()
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
@@ -19,15 +30,19 @@ function Login() {
                     username: formFields.username.value,
                     password: formFields.password.value
                 }
-                await login(loginDetails)
-                navigate("/")
+                const data = await login(loginDetails)
+                if (data?.token) {
+                    navigate("/")
+                }
             }
         } catch (error) {
-            console.error("Login failed:", error)
-            redirect("/auth/login")
+            navigate("/auth/login")
         }
 
     }
+
+    if (session) return <Navigate to="./" replace={true} />
+
     return (
         <div className="flex items-center justify-center flex-col mx-10 my-7">
             {loading && <div className="relative left-0 top-0 w-fit h-fit z-2">
@@ -48,7 +63,7 @@ function Login() {
                     />
                     {formFields.username.error && <span> {formFields.username.error}</span>}
                     <input
-                        type="password"
+                        type="text"
                         value={formFields.password.value}
                         onChange={(e) => handleInputChange(e, "password")}
                         className="bg-gray border border-gray-300 rounded-md p-2 w-full mt-3" placeholder="Password"
@@ -65,5 +80,3 @@ function Login() {
         </div>
     )
 }
-
-export default Login

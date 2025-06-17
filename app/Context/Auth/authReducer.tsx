@@ -1,10 +1,6 @@
 import { type AuthState, type AuthAction, AuthActionEnum } from "@app/Types/auth.types";
 
-export const initialAuthState: AuthState = {
-    token: null,
-    session: null,
-    loading: false,
-};
+
 
 export function authReducer(state: AuthState, action: AuthAction): AuthState {
     switch (action.type) {

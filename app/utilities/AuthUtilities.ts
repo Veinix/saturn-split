@@ -1,18 +1,16 @@
 import type { SessionToken } from "@app/Types/auth.types";
 import appConfig from "./AppConfig";
 
-let inMemoryToken: string | null = null;
-
 class TokenUtils {
-
-    setToken(token: string | null) {
-        inMemoryToken = token;
+    private inMemoryToken: string | null = null;
+    async setToken(token: string | null) {
+        this.inMemoryToken = token;
         token ? localStorage.setItem(appConfig.localStorageJWTKey, JSON.stringify(token))
             : localStorage.removeItem(appConfig.localStorageJWTKey)
     }
 
-    getToken(): string | null {
-        if (inMemoryToken) return inMemoryToken;
+    async getToken(): Promise<string | null> {
+        if (this.inMemoryToken) return this.inMemoryToken;
         const storedToken = localStorage.getItem(appConfig.localStorageJWTKey)
         return storedToken ? JSON.parse(storedToken) : null;
     }
@@ -34,7 +32,7 @@ class TokenUtils {
     }
 
     initTokenFromStorage() {
-        inMemoryToken = localStorage.getItem(appConfig.localStorageJWTKey);
+        this.inMemoryToken = localStorage.getItem(appConfig.localStorageJWTKey);
     }
 }
 

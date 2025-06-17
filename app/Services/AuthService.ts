@@ -1,9 +1,12 @@
 import type { LoginDetails, RegisterUser, SessionToken } from "@app/Types/auth.types"
 import api from "./Axios"
 import { tokenUtils } from "@app/Utilities/AuthUtilities";
-
+type LoginReturn = {
+    token: string,
+    session: SessionToken
+}
 class AuthService {
-    async loginUser({ username, password }: LoginDetails): Promise<SessionToken | null> {
+    async loginUser({ username, password }: LoginDetails): Promise<LoginReturn | null> {
         try {
             const res = await api.post<{ token: string }>("/auth/login", { username, password })
             const token = res.data.token
@@ -12,7 +15,7 @@ class AuthService {
                 throw new Error("Invalid response from server");
             }
             const decoded = tokenUtils.decodeAuthToken(token)
-            return decoded
+            return { token: token, session: decoded }
         } catch (error) {
             console.log("[Auth Service] Error logging in", error)
             return null

@@ -2,7 +2,6 @@ import LoadingScreen from "@app/Components/General/LoadingScreen";
 import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import { Navigate, redirect, useLoaderData } from "react-router";
 import type { Route } from "../+types/root";
-import { useEffect } from "react";
 import { useAuth } from "@app/Hooks/useAuth";
 
 
@@ -14,7 +13,7 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export async function clientLoader() {
-    const token = tokenUtils.getToken()
+    const token = await tokenUtils.getToken()
     if (!token) {
         throw redirect("/auth/login")
     }
@@ -37,7 +36,6 @@ export default function Home() {
 
     const userName = session?.userData.partialName || "User";
     if (loading) return <LoadingScreen />
-    if (!session) return <Navigate to="/auth/login" replace />;
 
     else return (
         <div className="p-5">
