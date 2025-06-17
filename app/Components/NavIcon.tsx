@@ -4,11 +4,12 @@ import { NavLink, type NavLinkRenderProps } from "react-router"
 interface NavIconProps {
     href: string
     icon: ReactNode
-    label: string
+    label: string,
 }
 function NavIcon({ href, icon, label }: NavIconProps) {
     return (
         <NavLink to={href}
+            
             className={({ isActive, isPending }: NavLinkRenderProps) => [
                 isActive
                     ? "bg-neutral-200 md:text-amber-600 hover:bg-amber-600 hover:text-amber-600"

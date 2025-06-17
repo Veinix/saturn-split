@@ -1,12 +1,16 @@
 import Navbar from "@app/Components/LayoutArea/Navbar";
 import { tokenUtils } from "@app/Utilities/AuthUtilities";
-import { Outlet, redirect } from "react-router";
+import { Outlet } from "react-router";
 
 export async function clientLoader() {
-    const token = tokenUtils.getToken()
-    if (!token) {
-        throw redirect("/")
+    // 1️⃣ Check if token is cached
+    const cached = tokenUtils.getToken();
+    if (cached) {
+        const decoded = tokenUtils.decodeAuthToken(cached);
+        return decoded
     }
+    // 2️⃣ Fallback to network
+
 }
 
 export default function RootLayout() {

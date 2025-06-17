@@ -16,6 +16,7 @@ export default function Navbar() {
                 label="Home">
             </NavIcon>
             <NavIcon
+            
                 href="/groups"
                 icon={"👥"}
                 label="Groups">

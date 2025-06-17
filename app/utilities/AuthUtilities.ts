@@ -9,10 +9,10 @@ class TokenUtils {
             : localStorage.removeItem(appConfig.localStorageJWTKey)
     }
 
-    async getToken(): Promise<string | null> {
+    getToken(): string | null {
         if (this.inMemoryToken) return this.inMemoryToken;
         const storedToken = localStorage.getItem(appConfig.localStorageJWTKey)
-        return storedToken ? JSON.parse(storedToken) : null;
+        return storedToken ? storedToken : null;
     }
 
     deleteToken() {
