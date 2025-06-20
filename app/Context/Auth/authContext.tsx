@@ -16,29 +16,37 @@ export const AuthDispatchContext = createContext<Dispatch<AuthAction>>(() => { }
 export default function AuthProvider({ children }: { children: ReactNode }) {
     const [state, dispatch] = useReducer(authReducer, initialAuthState);
 
-    // useEffect(() => {
-    //     const init = async () => {
-    //         try {
-    //             tokenUtils.initTokenFromStorage()
-    //             const token = tokenUtils.getToken();
-    //             if (typeof token === "string") {
-    //                 const decoded = tokenUtils.decodeAuthToken(token);
-    //                 if (decoded && typeof decoded === "object") {
-    //                     dispatch({ type: AuthActionEnum.SetToken, payload: { token } });
-    //                     dispatch({ type: AuthActionEnum.Login, payload: decoded })
-    //                 } else {
-    //                     tokenUtils.deleteToken();
-    //                 }
+    useEffect(() => {
+        const init = () => {
+            // No token? Get it
+            if (!state.token) {
+                try {
+                    tokenUtils.initTokenFromStorage()
+                    const token = tokenUtils.getToken();
+                    if (typeof token === "string") {
+                        const decoded = tokenUtils.decodeAuthToken(token);
+                        if (decoded && typeof decoded === "object") {
+                            dispatch({ type: AuthActionEnum.SetToken, payload: { token } });
+                            dispatch({ type: AuthActionEnum.Login, payload: decoded })
+                        } else {
+                            tokenUtils.deleteToken();
+                        }
 
-    //             }
-    //         } catch (error) {
-    //             console.log("Error initializing auth state:", error);
-    //         } finally {
-    //             dispatch({ type: AuthActionEnum.SetLoading, payload: false });
-    //         }
-    //     }
-    //     init()
-    // })
+                    }
+                } catch (error) {
+                    console.log("Error initializing auth state:", error);
+                } finally {
+                    dispatch({ type: AuthActionEnum.SetLoading, payload: false });
+                }
+            }
+
+            // No session? Set it
+            if (!state.session) {
+
+            }
+        }
+        init()
+    }, [])
 
     return (
         <AuthContext.Provider value={state}>

@@ -21,7 +21,7 @@ export default defineConfig({
             "@Context": path.resolve(__dirname, "app/Context"),
         },
     },
-    // server: {
-    //     host: "0.0.0.0"
-    // }
+    server: {
+        host: "0.0.0.0"
+    }
 });

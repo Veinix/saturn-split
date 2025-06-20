@@ -2,11 +2,7 @@ import authService from "@app/Services/AuthService";
 import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
 
-export function clientLoader() {
-    const token = tokenUtils.getToken()
-    if (token) return redirect("/")
-    return null
-}
+
 
 // CLIENT ACTION
 // Reads form data, call API, store toke, redirect

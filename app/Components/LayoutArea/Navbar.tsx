@@ -3,7 +3,7 @@ import NavIcon from "../NavIcon"
 
 
 export default function Navbar() {
-   
+
     return (
         <nav
             className=" 
@@ -16,7 +16,6 @@ export default function Navbar() {
                 label="Home">
             </NavIcon>
             <NavIcon
-            
                 href="/groups"
                 icon={"👥"}
                 label="Groups">

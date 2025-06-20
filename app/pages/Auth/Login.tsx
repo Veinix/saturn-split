@@ -4,7 +4,7 @@ import useLoginHandler from "@app/Hooks/useLoginHandler"
 import type { LoginDetails } from "@app/Types/auth.types"
 import { tokenUtils } from "@app/Utilities/AuthUtilities"
 import type { FormEvent } from "react"
-import { Form, Navigate, redirect, useNavigate } from "react-router"
+import { Form, Navigate, NavLink, redirect, useNavigate } from "react-router"
 
 export async function Loader() {
     const token = await tokenUtils.getToken()
@@ -15,8 +15,6 @@ export async function Loader() {
 
 export default function Login() {
     const { login, loading, session } = useAuth()
-
-
     const { formFields, handleInputChange, validatePassword, validateUsername } = useLoginHandler()
     const navigate = useNavigate()
 
@@ -44,39 +42,51 @@ export default function Login() {
     if (session) return <Navigate to="./" replace={true} />
 
     return (
-        <div className="flex items-center justify-center flex-col mx-10 my-7">
+        <div className="flex flex-col mx-10 my-7">
             {loading && <div className="relative left-0 top-0 w-fit h-fit z-2">
                 <LoadingScreen />
             </div>}
-            <span className="text-4xl mb-10">Oi , you not logged in innit?</span>
+            <div className="mb-4">
+                <p className="text-4xl text-amber-700 font-bold">Oy, mate </p>
+                <p className="text-3xl">you not logged innit?</p>
+            </div>
 
             {/* Login Fields */}
-            <div>
-                
+            <div className="my-2">
+
                 <form
                     onSubmit={handleSubmit}>
-                    <p className="pb-3"> Input your username and password to login</p>
                     <input
                         type="text"
                         value={formFields.username.value}
                         onChange={(e) => handleInputChange(e, "username")}
-                        className="bg-gray border border-gray-300 rounded-md p-2 w-full" placeholder="Username"
+                        className="bg-gray border border-gray-300 rounded-md p-3 w-full focus:border-black focus:outline-solid focus:outline-amber-700" placeholder="Username"
                     />
                     {formFields.username.error && <span> {formFields.username.error}</span>}
                     <input
                         type="text"
                         value={formFields.password.value}
                         onChange={(e) => handleInputChange(e, "password")}
-                        className="bg-gray border border-gray-300 rounded-md p-2 w-full mt-3" placeholder="Password"
+                        className="bg-gray border border-gray-300 rounded-md p-3 w-full mt-3 focus:border-black focus:outline-solid focus:outline-amber-700" placeholder="Password"
                     />
                     {formFields.password.error && <span>{formFields.password.error}</span>}
                     <button
-                        className="bg-orange-500 text-white rounded-md p-2 mt-3 w-full hover:cursor-pointer"
+                        className="bg-orange-500 text-white rounded-md p-2 py-4 mt-6 w-full hover:cursor-pointer hover:bg-orange-400 active:bg-orange-600"
                         type="submit"
                     >
                         Login
                     </button>
                 </form>
+
+            </div>
+            <div className="flex flex-col items-center mt-3">
+                <p> Don't have an account?</p>
+
+                <NavLink
+                    className={"text-amber-400 hover:text-amber-500"}
+                    to={"/auth/register"}>
+                    Click here
+                </NavLink>
             </div>
         </div>
     )

@@ -23,6 +23,15 @@ class AppConfig {
     public defaultLanguage = LanguageOptions.English
 
     public localStorageJWTKey: string = "jwt_session"
+
+    public favoriteColors: { name: string, value: string }[] = [
+        { name: "Orange", value: "#FF5733" },
+        { name: "Red", value: "#ef4444" },
+        { name: "Green", value: "#22c55e" },
+        { name: "Blue", value: "#3b82f6" },
+        { name: "Purple", value: "#a855f7" },
+        { name: "Pink", value: "#ec4899" },
+    ];
 }
 
 const appConfig = new AppConfig()
