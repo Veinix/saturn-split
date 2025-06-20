@@ -2,6 +2,8 @@ import LabelledInput from "@app/Components/General/LabelledInput";
 import appConfig from "@app/Utilities/AppConfig";
 import { useState } from "react";
 import { Form, useFetcher } from "react-router"
+import type { Route } from "./+types/Register";
+
 
 export default function Register() {
     const fetcher = useFetcher()
@@ -53,4 +55,12 @@ export default function Register() {
             </fetcher.Form>
         </div >
     )
+}
+
+export async function clientAction({
+    request,
+}: Route.ActionArgs) {
+    const formData = await request.formData()
+    const name = String(formData.get("name"))
+    const password = String(formData.get("password"))
 }
