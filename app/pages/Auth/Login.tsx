@@ -46,7 +46,7 @@ export default function Login() {
             {loading && <div className="relative left-0 top-0 w-fit h-fit z-2">
                 <LoadingScreen />
             </div>}
-            <div className="mb-4">
+            <div className="mb-4 md:flex md:gap-2 md:items-center">
                 <p className="text-4xl text-amber-700 font-bold">Oy, mate </p>
                 <p className="text-3xl">you not logged innit?</p>
             </div>

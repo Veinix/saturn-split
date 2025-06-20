@@ -17,7 +17,7 @@ export default function LabelledInput({ children, label, name, type = "text" }: 
             {children
                 ? children
                 : <input
-                    className="bg-gray border border-gray-300 rounded-md p-3 w-full mb-2 focus:border-black focus:outline-solid focus:outline-amber-700" type={type} name={name} />
+                    className="bg-gray border border-gray-300 rounded-md p-3 w-full  focus:border-black focus:outline-solid focus:outline-amber-700" type={type} name={name} />
             }
         </div>
     )
