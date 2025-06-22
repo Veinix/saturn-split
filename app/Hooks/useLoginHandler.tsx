@@ -34,7 +34,7 @@ export default function useLoginHandler() {
                 ...formFields,
                 username: {
                     ...formFields.username,
-                    error: "Username must be 3–20 characters: letters, numbers, or underscores"
+                    error: "Username not valid"
                 }
             })
 
@@ -50,7 +50,7 @@ export default function useLoginHandler() {
                 ...formFields,
                 password: {
                     ...formFields.password,
-                    error: "Password must be at least 8 characters long"
+                    error: "Password not valid"
                 }
             })
             return false

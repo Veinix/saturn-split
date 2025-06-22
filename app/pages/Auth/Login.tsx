@@ -62,7 +62,7 @@ export default function Login() {
                         onChange={(e) => handleInputChange(e, "username")}
                         className="bg-gray border border-gray-300 rounded-md p-3 w-full focus:border-black focus:outline-solid focus:outline-amber-700" placeholder="Username"
                     />
-                    {formFields.username.error && <span> {formFields.username.error}</span>}
+                    {formFields.username.error && <span className="inline"> {formFields.username.error}</span>}
                     <input
                         type="text"
                         value={formFields.password.value}
