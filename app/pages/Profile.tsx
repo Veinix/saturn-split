@@ -1,17 +1,27 @@
+import GeneralButton from "@app/Components/General/GeneralButton"
 import { useAuth } from "@app/Hooks/useAuth"
-import { useNavigate } from 'react-router'
+import appConfig from "@app/Utilities/AppConfig"
+import { Form, redirect } from 'react-router'
 
 export default function Profile() {
     const { logout } = useAuth()
-    const navigate = useNavigate()
     const handleClick = () => {
         logout()
-        navigate("/")
     }
     return (
         <div className="flex items-center justify-center h-1/2">
-            <button className="bg-amber-700 p-3 hover:cursor-pointer rounded-2xl h-full mt-20 text-4xl"
-                onClick={handleClick}>LOGOUT</button>
+            <Form method="POST"
+                className="flex items-center justify-center h-1/2 w-full">
+                <GeneralButton
+                    type="submit"
+                    text={"Logout"}
+                    onClick={handleClick} />
+            </Form>
         </div>
     )
+}
+
+export async function clientAction() {
+    localStorage.removeItem(appConfig.localStorageJWTKey);
+    return redirect("/auth/login");
 }
