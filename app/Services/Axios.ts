@@ -30,7 +30,7 @@ api.interceptors.response.use(
         if (error.response && error.response.status === 401) {
             tokenUtils.setToken(null); // Wipe token
             // Optionally redirect to login, show modal, or notify
-            window.location.href = '/login';
+            // window.location.href = './auth/login';
         }
         return Promise.reject(error);
     }

@@ -29,7 +29,7 @@ class AuthService {
     async registerUser(userInfo: RegisterUser) {
         try {
             const res = await api.post("/auth/register", { userInfo })
-            
+
         } catch (error) {
             console.log("[Auth Service] Error registering", error)
         }
