@@ -1,22 +1,10 @@
-import { useAuth } from "@app/Context/Auth/authContext";
 import type { Transaction } from "@app/Types/group.types";
 import appConfig from "@app/Utilities/AppConfig";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useRouteLoaderData } from "react-router";
 
-
-type ContextType = {
-    id: string;
-    name: string;
-    members: string[];
-    description?: string;
-    groupIcon?: string;
-    transactions?: Transaction[];
-    totalBalance?: number;
-}
 export default function Transactions() {
-    const { transactions } = useOutletContext<ContextType>()
-    const { session } = useAuth()
-
+    const transactions = useOutletContext<Transaction[]>()
+    const session = useRouteLoaderData("rootLayout") as { userData: { partialName: string } }
     // Need to use IDs, not just names. 
     // Works for now because no duplicates but should fix
     const displayName = (transactionMember: string): string => {
@@ -25,27 +13,32 @@ export default function Transactions() {
 
     return (
         transactions && <div>
-            {transactions.map((transaction, index) => {
+            {transactions.length > 0
+                ? transactions.map((transaction, index) => {
+                    return (
+                        <div
+                            key={`${transaction.borrowerId}_${transaction.lenderId}_${transaction.amount}_${index}`}
+                            className="border-black border px-3 py-2 text-white font-bold">
+                            {transaction.transactionType === true
+                                ? <>
+                                    <span>{displayName(transaction.borrowerId)} paid </span>
+                                    <span>{displayName(transaction.lenderId)} </span>
+                                    <span className="text-green-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span> </>
+                                : <>
+                                    <span>{displayName(transaction.lenderId)} lent </span>
+                                    <span> {displayName(transaction.borrowerId)}</span>
+                                    <span className="text-red-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span>
 
-                return (
-                    <div
-                        key={`${transaction.borrower}_${transaction.lender}_${transaction.amount}_${index}`}
-                        className="border-black border m-3 px-3 py-2 text-white font-bold">
-                        {transaction.transactionType === true
-                            ? <>
-                                <span>{displayName(transaction.borrower)} paid </span>
-                                <span>{displayName(transaction.lender)} </span>
-                                <span className="text-green-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span> </>
-                            : <>
-                                <span>{displayName(transaction.lender)} lent </span>
-                                <span> {displayName(transaction.borrower)}</span>
-                                <span className="text-red-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span>
-
-                            </>
-                        }
-                    </div>)
-            })}
+                                </>
+                            }
+                        </div>)
+                })
+                : <div className="flex items-center justify-center">
+                    No transactions made yet!
+                </div>
+            }
         </div>
+
     )
 }
 

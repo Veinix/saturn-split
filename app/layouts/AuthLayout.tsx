@@ -1,8 +1,8 @@
-import { tokenUtils } from "@app/Utilities/AuthUtilities";
+import authService from "@app/Services/AuthService";
 import { Outlet, redirect } from "react-router";
 
 export async function clientLoader() {
-    const token = tokenUtils.getToken()
+    const token = authService.getToken()
     if (token) return redirect("/")
 }
 clientLoader.hydrate = true as const;

@@ -10,7 +10,7 @@ import groupRoutes from "./Routes/groupRoutes";
 import otherRoutes from "./Routes/otherRoutes";
 
 export default [
-    layout("./Layouts/RootLayout.tsx", [
+    layout("./Layouts/RootLayout.tsx", { id: "rootLayout" }, [
         index("./Pages/Home.tsx"),
 
         ...prefix("groups", groupRoutes),

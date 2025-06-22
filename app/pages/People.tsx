@@ -1,5 +1,4 @@
 import authService from "@app/Services/AuthService";
-import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
 
 
@@ -20,7 +19,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
     const response = await authService.loginUser({ username, password })
     if (response) {
         // 3️⃣ Store token
-        tokenUtils.setToken(response.token);
+        authService.setToken(response.token);
         // 4️⃣ Redirect to home
         return redirect("/");
     }

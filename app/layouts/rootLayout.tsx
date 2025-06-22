@@ -1,25 +1,22 @@
 import Navbar from "@app/Components/LayoutArea/Navbar";
-import { tokenUtils } from "@app/Utilities/AuthUtilities";
+import authService from "@app/Services/AuthService";
 import { Outlet, redirect } from "react-router";
 
 export async function clientLoader() {
-    // 1️⃣ Check if token is cached
-    const cached = tokenUtils.getToken();
+    const cached = authService.getToken();
     if (cached) {
-        const decoded = tokenUtils.decodeAuthToken(cached);
+        const decoded = authService.decodeAuthToken(cached);
         return decoded
     }
-    // 2️⃣ Fallback to network
-    const token = tokenUtils.getToken()
+    const token = authService.getToken()
     if (!token) return redirect("/auth/login")
 }
 
 export default function RootLayout() {
-
     return (
         <div className='min-h-screen flex flex-col'>
             <Navbar />
-            <main>
+            <main className="h-full">
                 <Outlet />
             </main>
         </div >

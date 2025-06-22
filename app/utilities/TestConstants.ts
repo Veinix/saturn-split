@@ -144,6 +144,370 @@ class TestConstants {
             { lender: "Leor", borrower: "Omer", amount: 250, transactionType: false },
         ],
     }
+
+    splitWiseCSVData = [
+        {
+            Date: "2025-04-21",
+            Description: "שכר דירה",
+            Category: "Rent",
+            Cost: "7000.00",
+            Currency: "ILS",
+            OmerNusboim: "-2175.00",
+            EranFarkash: "4825.00",
+            DavidA: "-2650.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-04-21",
+            Description: "דמי תיווך",
+            Category: "Home - Other",
+            Cost: "8260.00",
+            Currency: "ILS",
+            OmerNusboim: "-2065.00",
+            EranFarkash: "-2065.00",
+            DavidA: "6195.00",
+            leornoyman: "-2065.00"
+        },
+        {
+            Date: "2025-04-27",
+            Description: "ועד בית",
+            Category: "Home - Other",
+            Cost: "270.00",
+            Currency: "ILS",
+            OmerNusboim: "-90.00",
+            EranFarkash: "-90.00",
+            DavidA: "180.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-02",
+            Description: "קניות",
+            Category: "Groceries",
+            Cost: "174.00",
+            Currency: "ILS",
+            OmerNusboim: "116.00",
+            EranFarkash: "-58.00",
+            DavidA: "-58.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-05",
+            Description: "פוף סלון",
+            Category: "Furniture",
+            Cost: "250.00",
+            Currency: "ILS",
+            OmerNusboim: "0.00",
+            EranFarkash: "166.66",
+            DavidA: "-83.33",
+            leornoyman: "-83.33"
+        },
+        {
+            Date: "2025-05-05",
+            Description: "מפתחות + שלטים",
+            Category: "Home - Other",
+            Cost: "405.00",
+            Currency: "ILS",
+            OmerNusboim: "-101.25",
+            EranFarkash: "-101.25",
+            DavidA: "303.75",
+            leornoyman: "-101.25"
+        },
+        {
+            Date: "2025-05-05",
+            Description: "קניות מזון אמיתי",
+            Category: "Groceries",
+            Cost: "100.00",
+            Currency: "ILS",
+            OmerNusboim: "-33.34",
+            EranFarkash: "66.67",
+            DavidA: "-33.33",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-06",
+            Description: "ארנונה (בתוספת סוף אפריל)",
+            Category: "Home - Other",
+            Cost: "1650.00",
+            Currency: "ILS",
+            OmerNusboim: "-550.00",
+            EranFarkash: "1100.00",
+            DavidA: "-550.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-06",
+            Description: "1.5קג פרמז׳ן",
+            Category: "Groceries",
+            Cost: "178.00",
+            Currency: "ILS",
+            OmerNusboim: "-59.34",
+            EranFarkash: "118.67",
+            DavidA: "-59.33",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-07",
+            Description: "leor n. paid DavidA.",
+            Category: "Payment",
+            Cost: "1000.00",
+            Currency: "ILS",
+            OmerNusboim: "0.00",
+            EranFarkash: "0.00",
+            DavidA: "-1000.00",
+            leornoyman: "1000.00"
+        },
+        {
+            Date: "2025-05-09",
+            Description: "צמחים+אדמה",
+            Category: "Household supplies",
+            Cost: "210.00",
+            Currency: "ILS",
+            OmerNusboim: "157.50",
+            EranFarkash: "-52.50",
+            DavidA: "-52.50",
+            leornoyman: "-52.50"
+        },
+        {
+            Date: "2025-05-13",
+            Description: "התקנת תמי4",
+            Category: "Home - Other",
+            Cost: "140.00",
+            Currency: "ILS",
+            OmerNusboim: "-35.00",
+            EranFarkash: "105.00",
+            DavidA: "-35.00",
+            leornoyman: "-35.00"
+        },
+        {
+            Date: "2025-05-13",
+            Description: "Omer N. paid Eran F.",
+            Category: "Payment",
+            Cost: "2742.18",
+            Currency: "ILS",
+            OmerNusboim: "2742.18",
+            EranFarkash: "-2742.18",
+            DavidA: "0.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-13",
+            Description: "Omer N. paid DavidA.",
+            Category: "Payment",
+            Cost: "774.00",
+            Currency: "ILS",
+            OmerNusboim: "774.00",
+            EranFarkash: "0.00",
+            DavidA: "-774.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-17",
+            Description: "קניות סופר קינג סטור ",
+            Category: "Groceries",
+            Cost: "556.82",
+            Currency: "ILS",
+            OmerNusboim: "-185.60",
+            EranFarkash: "-185.61",
+            DavidA: "371.21",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-22",
+            Description: "מנגל + חלפים",
+            Category: "Home - Other",
+            Cost: "550.00",
+            Currency: "ILS",
+            OmerNusboim: "-137.50",
+            EranFarkash: "412.50",
+            DavidA: "-137.50",
+            leornoyman: "-137.50"
+        },
+        {
+            Date: "2025-05-24",
+            Description: "Basar",
+            Category: "Groceries",
+            Cost: "215.00",
+            Currency: "ILS",
+            OmerNusboim: "143.34",
+            EranFarkash: "-71.67",
+            DavidA: "-71.67",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-24",
+            Description: "חשמלים וכאלה",
+            Category: "Home - Other",
+            Cost: "250.00",
+            Currency: "ILS",
+            OmerNusboim: "-62.50",
+            EranFarkash: "187.50",
+            DavidA: "-62.50",
+            leornoyman: "-62.50"
+        },
+        {
+            Date: "2025-05-26",
+            Description: "שכד",
+            Category: "Rent",
+            Cost: "7000.00",
+            Currency: "ILS",
+            OmerNusboim: "-2175.00",
+            EranFarkash: "4825.00",
+            DavidA: "-2650.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-05-30",
+            Description: "קניות",
+            Category: "General",
+            Cost: "160.00",
+            Currency: "ILS",
+            OmerNusboim: "106.67",
+            EranFarkash: "-53.33",
+            DavidA: "-53.34",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-03",
+            Description: "leor n. paid DavidA.",
+            Category: "Payment",
+            Cost: "1166.25",
+            Currency: "ILS",
+            OmerNusboim: "0.00",
+            EranFarkash: "0.00",
+            DavidA: "-1166.25",
+            leornoyman: "1166.25"
+        },
+        {
+            Date: "2025-06-03",
+            Description: "leor n. paid Eran F.",
+            Category: "Payment",
+            Cost: "318.33",
+            Currency: "ILS",
+            OmerNusboim: "0.00",
+            EranFarkash: "-318.33",
+            DavidA: "0.00",
+            leornoyman: "318.33"
+        },
+        {
+            Date: "2025-06-03",
+            Description: "leor n. paid Omer N.",
+            Category: "Payment",
+            Cost: "52.50",
+            Currency: "ILS",
+            OmerNusboim: "-52.50",
+            EranFarkash: "0.00",
+            DavidA: "0.00",
+            leornoyman: "52.50"
+        },
+        {
+            Date: "2025-06-03",
+            Description: "DavidA. paid Eran F.",
+            Category: "Payment",
+            Cost: "3819.13",
+            Currency: "ILS",
+            OmerNusboim: "0.00",
+            EranFarkash: "-3819.13",
+            DavidA: "3819.13",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-06",
+            Description: "Omer N. paid DavidA.",
+            Category: "Payment",
+            Cost: "1432.34",
+            Currency: "ILS",
+            OmerNusboim: "1432.34",
+            EranFarkash: "0.00",
+            DavidA: "-1432.34",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-06",
+            Description: "Omer N. paid Eran F.",
+            Category: "Payment",
+            Cost: "2250.00",
+            Currency: "ILS",
+            OmerNusboim: "2250.00",
+            EranFarkash: "-2250.00",
+            DavidA: "0.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-07",
+            Description: "קניות",
+            Category: "Groceries",
+            Cost: "198.00",
+            Currency: "ILS",
+            OmerNusboim: "-66.00",
+            EranFarkash: "132.00",
+            DavidA: "-66.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-08",
+            Description: "פרמז׳ן",
+            Category: "Groceries",
+            Cost: "160.00",
+            Currency: "ILS",
+            OmerNusboim: "-53.33",
+            EranFarkash: "106.67",
+            DavidA: "-53.34",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-15",
+            Description: "סופר",
+            Category: "General",
+            Cost: "215.00",
+            Currency: "ILS",
+            OmerNusboim: "143.33",
+            EranFarkash: "-71.67",
+            DavidA: "-71.66",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-19",
+            Description: "חשבון מים",
+            Category: "Home - Other",
+            Cost: "75.00",
+            Currency: "ILS",
+            OmerNusboim: "-25.00",
+            EranFarkash: "50.00",
+            DavidA: "-25.00",
+            leornoyman: "0.00"
+        },
+        {
+            Date: "2025-06-22",
+            Description: "בשר",
+            Category: "General",
+            Cost: "332.00",
+            Currency: "ILS",
+            OmerNusboim: "221.34",
+            EranFarkash: "-110.67",
+            DavidA: "-110.67",
+            leornoyman: "0.00"
+        },
+        {
+            Date: ""
+        },
+        {
+            Date: "2025-06-22",
+            Description: "Total balance",
+            Category: " ",
+            Cost: " ",
+            Currency: "ILS",
+            OmerNusboim: "220.34",
+            EranFarkash: "106.33",
+            DavidA: "-326.67",
+            leornoyman: "0.00"
+        },
+        {
+            Date: ""
+        },
+        {
+            Date: ""
+        }
+    ]
 }
 
 const testConstants = new TestConstants()

@@ -1,7 +1,6 @@
 import { AuthContext, AuthDispatchContext } from "@app/Context/Auth/authContext";
 import authService from "@app/Services/AuthService";
 import { AuthActionEnum, type LoginDetails } from "@app/Types/auth.types";
-import { tokenUtils } from "@app/Utilities/AuthUtilities";
 import { useCallback, useContext } from "react";
 
 export const useAuth = () => {
@@ -16,7 +15,7 @@ export const useAuth = () => {
             try {
                 const data = await authService.loginUser({ username, password })
                 if (data) {
-                    tokenUtils.setToken(data.token)
+                    authService.setToken(data.token)
                     dispatch({ type: AuthActionEnum.SetToken, payload: { token: data.token } })
                     dispatch({ type: AuthActionEnum.Login, payload: data.session })
                 }
@@ -31,7 +30,7 @@ export const useAuth = () => {
         }, [dispatch])
 
     const logout = useCallback(() => {
-        tokenUtils.deleteToken()
+        authService.deleteToken()
         dispatch({ type: AuthActionEnum.Logout });
     }, [dispatch])
 

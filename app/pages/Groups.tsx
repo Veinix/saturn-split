@@ -1,11 +1,12 @@
 
+import GeneralButton from "@app/Components/General/GeneralButton";
 import LoadingScreen from "@app/Components/General/LoadingScreen";
 import GroupListItem from "@app/Components/GroupArea/GroupListItem";
 import { getAllGroups } from "@app/Services/GroupsService";
 import type { Group } from "@app/Types/group.types";
-import { useLoaderData, useNavigation } from "react-router";
+import { useLoaderData } from "react-router";
 
-export async function loader() {
+export async function clientLoader() {
     return await getAllGroups()
 }
 
@@ -20,6 +21,10 @@ export default function Groups() {
     return (
         <div className="w-full p-5">
             <span className="text-4xl"> Grouplist</span>
+            <GeneralButton
+                text={"Create new Group"}
+                margin="ml-5"
+            />
             <div className={`
                 flex flex-col pt-7 gap-4 
                 md:w-3xl md:flex-row
@@ -35,7 +40,7 @@ export default function Groups() {
                             description={null}
                         />
                     })
-                    : <span> No Groups found! Make one</span>}
+                    : <span> No Groups found! Make one per chance?</span>}
             </div>
         </div>
     )

@@ -1,6 +1,8 @@
 export type Transaction = {
-    lender: string,
-    borrower: string,
+    transactionId: string,
+    groupId?: string,
+    lenderId: string,
+    borrowerId: string,
     amount: number,
     transactionType: boolean, // True = Positive = Paid back. False = Negative = Loaned
     transactionDate?: string,

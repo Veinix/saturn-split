@@ -9,10 +9,9 @@ export type User = {
     id: string,
     username: string,
     password: string,
-    phone_number?: string,
     full_name: string,
-    favorite_color?: string,
-    role?: UserRoles
+    favorite_color: string | null,
+    role: UserRoles | null
 }
 
 export type RegisterUser = Omit<User, "id">
@@ -67,4 +66,4 @@ export type AuthAction =
     | { type: AuthActionEnum.Register }
     | { type: AuthActionEnum.SetLoading, payload: boolean }
     | { type: AuthActionEnum.RefreshToken; payload: { token: string; session: SessionToken } }
-    | { type: AuthActionEnum.SetToken; payload: { token: string} }
+    | { type: AuthActionEnum.SetToken; payload: { token: string } }

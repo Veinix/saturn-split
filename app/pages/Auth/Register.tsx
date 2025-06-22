@@ -4,6 +4,8 @@ import { useState } from "react";
 import { data, Form, redirect, useFetcher } from "react-router"
 import type { Route } from "./+types/Register";
 import LoadingScreen from "@app/Components/General/LoadingScreen";
+import authService from "@app/Services/AuthService";
+import { UserRoles, type RegisterUser } from "@app/Types/auth.types";
 
 
 export default function Register() {
@@ -64,6 +66,7 @@ export default function Register() {
                     </div>
                 </LabelledInput>
                 {errors?.favoriteColor ? <em>{errors.favoriteColor}</em> : null}
+                {errors?.general ? <em className="mt-3">{errors.general}</em> : null}
 
                 {fetcher.state !== "submitting"
                     ? <button className="bg-orange-500 text-white rounded-md p-2 py-4 mt-6 w-full hover:cursor-pointer hover:bg-orange-400 active:bg-orange-600 md:col-span-2 "
@@ -111,8 +114,19 @@ export async function clientAction({
     if (Object.keys(errors).length > 0) {
         return data({ errors }, { status: 400 });
     }
-
-
+    const res = await authService.registerUser({
+        full_name: name,
+        username,
+        password,
+        favorite_color: favoriteColor,
+        role: UserRoles.Developer
+    })
+    if (!res) {
+        return data({ errors: { general: "Failed to register user" } }, { status: 500 });
+    } else {
+        await authService.loginUser({ username, password })
+    }
 
     return redirect("/")
+
 }

@@ -4,10 +4,11 @@ interface GroupListItemProps extends Group {
     icon: string
 }
 
-function GroupListItem({ id, name, description, icon }: GroupListItemProps) {
+export default function GroupListItem({ id, name, description, icon }: GroupListItemProps) {
     return (
         <NavLink
             to={id}
+            prefetch="intent"
             className={`
         group
         hover:cursor-pointer
@@ -26,4 +27,3 @@ function GroupListItem({ id, name, description, icon }: GroupListItemProps) {
     )
 }
 
-export default GroupListItem

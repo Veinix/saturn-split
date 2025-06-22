@@ -1,8 +1,8 @@
 import LoadingScreen from "@app/Components/General/LoadingScreen";
-import { tokenUtils } from "@app/Utilities/AuthUtilities";
-import { Navigate, redirect, useLoaderData } from "react-router";
+import { redirect, useRouteLoaderData } from "react-router";
 import type { Route } from "../+types/root";
-import { useAuth } from "@app/Hooks/useAuth";
+import type { SessionToken } from "@app/Types/auth.types";
+import authService from "@app/Services/AuthService";
 
 
 export function meta({ }: Route.MetaArgs) {
@@ -13,34 +13,21 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export async function clientLoader() {
-    const token = await tokenUtils.getToken()
-    if (!token) {
-        throw redirect("/auth/login")
-    }
-
-    const decoded = tokenUtils.decodeAuthToken(token);
-    if (!decoded || typeof decoded !== "object") {
-        throw redirect("/auth/login");
-    }
-
-    return decoded;
+    const token = authService.getToken()
+    if (!token) throw redirect("/auth/login")
 }
-clientLoader.hydrate = true as const;
 
 export function HydrateFallback() {
     return <LoadingScreen />;
 }
 
 export default function Home() {
-    const { session, loading } = useAuth()
-
-    const userName = session?.userData.partialName || "User";
-    if (loading) return <LoadingScreen />
-
-    else return (
+    const decoded = useRouteLoaderData("rootLayout") as SessionToken
+    const { partialName } = decoded.userData
+    return (
         <div className="p-5">
             <span className="text-4xl"> Welcome back, </span>
-            <span className="text-4xl text-amber-600"> {userName.split(" ")[0]}</span>
+            <span className="text-4xl text-amber-600"> {partialName.split(" ")[0]}</span>
         </div>
     )
 }

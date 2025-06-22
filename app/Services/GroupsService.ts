@@ -8,9 +8,7 @@ import api from "./Axios";
 export async function getAllGroups(): Promise<Group[]> {
     try {
         const res = await api.get("/groups")
-        console.log(res.data)
         return res.data
-
     } catch (error) {
         console.log("[Group Service] Error fetching groups:", error);
         return []
@@ -30,9 +28,18 @@ export async function getAllGroups(): Promise<Group[]> {
 export async function getSingleGroupData(groupId: string): Promise<Group | void> {
     try {
         const res = await api.get(`/groups/${groupId}`)
+        console.log(res.data)
         return res.data
     } catch (error) {
         console.log(`[Group Service] Error fetching group "${groupId}"`, error)
-        return
+    }
+}
+
+export async function checkIfUserIsGroupMember(token: string, groupId: string): Promise<Boolean> {
+    try {
+        const res = await api.post(`/groups/${groupId}`, token)
+        return res.data
+    } catch (error) {
+        return false
     }
 }
