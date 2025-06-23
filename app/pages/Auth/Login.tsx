@@ -28,7 +28,7 @@ export default function Login() {
                 />
                 {!isSubmitting && errors?.username ? <em className="w-min">{errors.username}</em> : null}
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     className="bg-gray border border-gray-300 rounded-md p-3 w-full mt-3 focus:border-black focus:outline-solid focus:outline-amber-700" placeholder="Password"
                 />

@@ -14,7 +14,7 @@ class AppConfig {
     public frontendHost: FrontendHostType = "localhost"
     public baseUrl: string = `http://${this.frontendHost}:5173/`
 
-    public backendHost: BackendHostType = "192.168.50.156"
+    public backendHost: BackendHostType = "localhost"
     public baseApiEndpoint: string = `http://${this.backendHost}:3000/api`
 
     public defaultCurrency = {

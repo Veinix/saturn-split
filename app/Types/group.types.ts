@@ -14,3 +14,8 @@ export type Group = {
     id: string
     name: string
 }
+
+export enum GroupMemberRoles {
+    GroupOwner = "owner",
+    GroupMember = "member",
+}
