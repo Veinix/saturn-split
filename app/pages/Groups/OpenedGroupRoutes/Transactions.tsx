@@ -5,8 +5,8 @@ import { useOutletContext, useRouteLoaderData } from "react-router";
 export default function Transactions() {
     const transactions = useOutletContext<Transaction[]>()
     const session = useRouteLoaderData("rootLayout") as { userData: { partialName: string } }
-    // Need to use IDs, not just names. 
-    // Works for now because no duplicates but should fix
+    // TODO Need to use IDs, not just names. 
+    // TODO Works for now because no duplicates but should fix
     const displayName = (transactionMember: string): string => {
         return transactionMember === session?.userData.partialName.split(" ")[0] ? "You" : transactionMember
     }
