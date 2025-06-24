@@ -33,9 +33,9 @@ export default function OpenedGroup() {
                     <span className="absolute text-5xl font-bold z-2"> {groupName}</span>
                 </div>
             </div>
-            <div className="sticky w-full top-0 h-16 mb-16 flex flex-col z-20">
+            <div className="sticky w-full top-0  flex flex-col z-20">
                 {/* Group Options */}
-                <div className="flex gap-4 bg-amber-700 p-3 w-full z-2">
+                <div className="flex items-center gap-4 bg-orange-500 w-full z-2 py-2 px-2">
                     <NavLink to={"./"}
                         className=" bg-white rounded-xl px-4 py-3 text-black w-fit font-bold"> Transactions </NavLink>
                     <NavLink to={"./members"}
@@ -43,8 +43,8 @@ export default function OpenedGroup() {
                 </div>
 
                 {/* Stats */}
-                <div className="w-full bg-amber-700 h-12 flex items-center justify-center p-2">
-                    {/* {totalOwed > 0
+                {/* <div className="w-full bg-amber-700 h-12 flex items-center justify-center">
+                    {totalOwed > 0
                         ? <p>
                             <span>{` Eran`}</span>{" "}
                             <span>owes you</span>{" "}
@@ -55,14 +55,13 @@ export default function OpenedGroup() {
                             <span>{` Eran`}</span>{" "}
                             <span className="text-red-300 font-bold">{appConfig.defaultCurrency.symbol}{Math.abs(totalOwed)}</span>
                         </p>
-                    } */}
+                    }
 
-                </div>
+                </div> */}
             </div>
 
-
             {/* Transaction History */}
-            <section className="rounded-xl w-10/12 min-h-1/4 border border-pink-100 pt-3 px-3 mx-4 bg-none z-0">
+            <section className="w-11/12 min-h-1/4 border-pink-100 z-0 flex flex-col gap-4 mt-4">
                 <Outlet context={transactions} />
             </section>
 
@@ -70,7 +69,7 @@ export default function OpenedGroup() {
                 showTopBtn && (
                     <button
                         onClick={handleClickUp}
-                        className="fixed bottom-26 right-6 md:bottom-3 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full shadow-lg transition">
+                        className="fixed bottom-26 left-6 md:bottom-3 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full shadow-lg transition">
                         ↑
                     </button>
                 )

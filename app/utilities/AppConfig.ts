@@ -1,5 +1,5 @@
 import { LanguageOptions } from "./i18n"
-type FrontendHostType = "localhost" | "192.168.50.156"
+type FrontendHostType = "localhost" | "192.168.50.156" | string & {}
 type BackendHostType = "localhost" | "192.168.50.156" | "169.254.5.254" | string & {}
 class AppConfig {
     private testUsername: string = "aviles"
@@ -11,10 +11,11 @@ class AppConfig {
         password: this.testPassword,
         name: this.testName,
     }
+
     public frontendHost: FrontendHostType = "localhost"
     public baseUrl: string = `http://${this.frontendHost}:5173/`
 
-    public backendHost: BackendHostType = "localhost"
+    public backendHost: BackendHostType = "192.168.50.156"
     public baseApiEndpoint: string = `http://${this.backendHost}:3000/api`
 
     public defaultCurrency = {

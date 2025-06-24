@@ -10,34 +10,40 @@ export default function Transactions() {
     const displayName = (transactionMember: string): string => {
         return transactionMember === session?.userData.partialName.split(" ")[0] ? "You" : transactionMember
     }
-
+    const transactionName: string = "Groceries "
     return (
-        transactions && <div>
+        transactions && <>
             {transactions.length > 0
                 ? transactions.map((transaction, index) => {
                     return (
                         <div
                             key={`${transaction.borrowerId}_${transaction.lenderId}_${transaction.amount}_${index}`}
-                            className="border-black border px-3 py-2 text-white font-bold">
-                            {transaction.transactionType === true
-                                ? <>
-                                    <span>{displayName(transaction.borrowerId)} paid </span>
-                                    <span>{displayName(transaction.lenderId)} </span>
-                                    <span className="text-green-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span> </>
-                                : <>
-                                    <span>{displayName(transaction.lenderId)} lent </span>
-                                    <span> {displayName(transaction.borrowerId)}</span>
-                                    <span className="text-red-400"> {appConfig.defaultCurrency.symbol} {transaction.amount} </span>
+                            className="flex text-white border border-yellow-200 font-bold h-18 md:h-20 items-center gap-3">
 
-                                </>
-                            }
+                            <div className="p-3 h-full flex items-center justify-center bg-pink-500">
+
+                            </div>
+                            <div className=" p-3 bg-pink-800 h-full flex items-center justify-center">
+
+                            </div>
+
+                            <div className="flex gap-2 text-md m-0 p-0">
+                                <span>{displayName(transaction.lenderId)} paid </span>
+                                <span className={"text-gray-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
+                                <span>for</span>
+                                <span className="text-blue-400">{transactionName}</span>
+                            </div>
+                            <div className="flex gap-2 text-xs">
+                                <span>Your share is</span>
+                                <span className={"text-red-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
+                            </div>
                         </div>)
                 })
                 : <div className="flex items-center justify-center">
                     No transactions made yet!
                 </div>
             }
-        </div>
+        </>
 
     )
 }
