@@ -5,6 +5,14 @@ import GroupListItem from "@app/Components/GroupArea/GroupListItem";
 import { getAllGroups } from "@app/Services/GroupsService";
 import type { Group } from "@app/Types/group.types";
 import { useLoaderData } from "react-router";
+import type { Route } from "./+types/Groups";
+
+export function meta({ }: Route.MetaArgs) {
+    return [
+        { title: "Saturn Split | Groups" },
+        { name: "description", content: "Welcome to Saturn Split!" },
+    ];
+}
 
 export async function clientLoader() {
     return await getAllGroups()

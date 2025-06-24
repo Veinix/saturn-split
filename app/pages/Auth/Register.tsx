@@ -1,12 +1,18 @@
 import LabelledInput from "@app/Components/General/LabelledInput";
 import appConfig from "@app/Utilities/AppConfig";
 import { useState } from "react";
-import { data, Form, redirect, useFetcher } from "react-router"
+import { data, Form, NavLink, redirect, useFetcher } from "react-router"
 import type { Route } from "./+types/Register";
 import LoadingScreen from "@app/Components/General/LoadingScreen";
 import authService from "@app/Services/AuthService";
 import { UserRoles, type RegisterUser } from "@app/Types/auth.types";
 
+export function meta({ }: Route.MetaArgs) {
+    return [
+        { title: "Saturn Split | Register" },
+        { name: "description", content: "Welcome to Saturn Split!" },
+    ];
+}
 
 export default function Register() {
     const fetcher = useFetcher()
@@ -75,6 +81,15 @@ export default function Register() {
                         <LoadingScreen />
                     </>}
             </fetcher.Form>
+            <div className="flex flex-col items-center mt-3">
+                <p> Already have an account?</p>
+
+                <NavLink
+                    className={"text-amber-400 hover:text-amber-500"}
+                    to={"/auth/login"}>
+                    Click here
+                </NavLink>
+            </div>
         </div >
     )
 }

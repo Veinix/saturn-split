@@ -19,5 +19,5 @@ export default function Profile() {
 
 export async function clientAction() {
     await authService.logoutUser()
-    return redirect("/auth/login");
+    // return redirect("/auth/login");
 }

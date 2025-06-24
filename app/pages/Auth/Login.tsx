@@ -3,6 +3,13 @@ import type { Route } from "./+types/Login"
 import { LoginSchema } from "@app/Schemas/LoginSchema"
 import authService from "@app/Services/AuthService"
 
+export function meta({ }: Route.MetaArgs) {
+    return [
+        { title: "Saturn Split | Login" },
+        { name: "description", content: "Welcome to Saturn Split!" },
+    ];
+}
+
 export default function Login() {
     const fetcher = useFetcher()
     const errors = fetcher.data?.errors
