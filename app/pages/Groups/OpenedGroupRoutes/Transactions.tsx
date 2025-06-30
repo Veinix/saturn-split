@@ -18,7 +18,7 @@ export default function Transactions() {
                     return (
                         <div
                             key={`${transaction.borrowerId}_${transaction.lenderId}_${transaction.amount}_${index}`}
-                            className="flex text-white border border-yellow-200 font-bold h-18 md:h-20 items-center gap-3">
+                            className="flex text-white border border-yellow-200 font-bold h-18 md:h-20 items-center">
 
                             <div className="p-3 h-full flex items-center justify-center bg-pink-500">
 
@@ -26,16 +26,18 @@ export default function Transactions() {
                             <div className=" p-3 bg-pink-800 h-full flex items-center justify-center">
 
                             </div>
+                            <div className="flex w-full flex-col ml-3">
 
-                            <div className="flex gap-2 text-md m-0 p-0">
-                                <span>{displayName(transaction.lenderId)} paid </span>
-                                <span className={"text-gray-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
-                                <span>for</span>
-                                <span className="text-blue-400">{transactionName}</span>
-                            </div>
-                            <div className="flex gap-2 text-xs">
-                                <span>Your share is</span>
-                                <span className={"text-red-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
+                                <div className="flex gap-2 text-md m-0 p-0">
+                                    <span>{displayName(transaction.lenderId)} paid </span>
+                                    <span className={"text-gray-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
+                                    <span>for</span>
+                                    <span className="text-blue-400">{transactionName}</span>
+                                </div>
+                                <div className="flex gap-2 text-md">
+                                    <span>Your share is</span>
+                                    <span className={"text-red-400"}> {appConfig.defaultCurrency.symbol} {Math.abs(transaction.amount)} </span>
+                                </div>
                             </div>
                         </div>)
                 })
@@ -44,7 +46,5 @@ export default function Transactions() {
                 </div>
             }
         </>
-
     )
 }
-

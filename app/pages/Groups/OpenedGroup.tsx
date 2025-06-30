@@ -1,18 +1,18 @@
 
 import type { Route } from ".react-router/types/app/Pages/Groups/+types/OpenedGroup";
 import useScrollUp from "@app/Hooks/useScrollUp";
-import authService from "@app/Services/AuthService";
 import { getSingleGroupData } from "@app/Services/GroupsService";
-import testConstants from "@app/Utilities/TestConstants";
-import { NavLink, Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { NavLink, Outlet, useLoaderData } from "react-router";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (!params.groupId) throw new Error("No group ID in URL");
-    return await getSingleGroupData(params.groupId);
+    const singleGroupData = await getSingleGroupData(params.groupId);
+    const userDictionary: { id: string, name: string }[] = []
+    return [singleGroupData, userDictionary]
 }
 
 export default function OpenedGroup() {
-    const transactions = useLoaderData()
+    const [transactions, userDictionary] = useLoaderData()
     const { showTopBtn, scrollToTop } = useScrollUp(200)
     const groupIcon = "🪴"
     const groupName = "Household"
