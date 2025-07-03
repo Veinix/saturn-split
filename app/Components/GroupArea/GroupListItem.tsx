@@ -1,10 +1,9 @@
-import type { Group } from "@app/Types/group.types"
+import type { Group, GroupOverview } from "@app/Types/group.types"
 import { NavLink } from "react-router"
-interface GroupListItemProps extends Group {
-    icon: string
-}
 
-export default function GroupListItem({ id, name, description, icon }: GroupListItemProps) {
+export default function GroupListItem({ id, name, description, icon, members, created_by }: GroupOverview) {
+    const memberNames = members ? members.map(m => Object.values(m)[2]).join(", ") : "Members"
+    const creatorName = created_by ? created_by.username : "Creator"
     return (
         <NavLink
             to={id}
@@ -20,8 +19,12 @@ export default function GroupListItem({ id, name, description, icon }: GroupList
                 </div>
             </div>
             <div className="flex flex-col gap-1">
-                <p className="text-2xl">{name}</p>
-                {/* <span className="text-gray-600 group-hover:text-black transition-colors duration-300">{members.join(", ")}</span> */}
+                <div>
+                    <span className="text-2xl ">{name}</span>
+                    <span className=""> - {description}</span>
+                </div>
+                <p className="text-gray-600 group-hover:text-black transition-colors duration-300 font-bold">Created by {creatorName}</p>
+                <p className="text-gray-600 group-hover:text-black transition-colors duration-300">{memberNames}</p>
             </div>
         </NavLink>
     )

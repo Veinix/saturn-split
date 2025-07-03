@@ -1,4 +1,4 @@
-import type { Group } from "@app/Types/group.types";
+import type { ExtendedGroup, Group } from "@app/Types/group.types";
 import api from "./Axios";
 
 // ****************************
@@ -25,7 +25,7 @@ export async function getAllGroups(): Promise<Group[]> {
 // * SINGLE GROUP METHODS
 // ****************************
 
-export async function getSingleGroupData(groupId: string): Promise<Group | void> {
+export async function getSingleGroupData(groupId: string): Promise<ExtendedGroup | void> {
     try {
         const res = await api.get(`/groups/${groupId}`)
         console.log(res.data)

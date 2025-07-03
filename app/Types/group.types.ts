@@ -8,11 +8,15 @@ export type Transaction = {
     transactionDate?: string,
 }
 export type Group = {
-    created_by: string | null
+    created_by: { username: string, id: string }
     description: string | null
     icon: string | null
     id: string
     name: string
+}
+
+export type GroupOverview = Group & {
+    members: { username: string, id: string }[]
 }
 
 export enum GroupMemberRoles {

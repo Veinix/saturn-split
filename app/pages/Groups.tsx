@@ -3,7 +3,7 @@ import GeneralButton from "@app/Components/General/GeneralButton";
 import LoadingScreen from "@app/Components/General/LoadingScreen";
 import GroupListItem from "@app/Components/GroupArea/GroupListItem";
 import { getAllGroups } from "@app/Services/GroupsService";
-import type { Group } from "@app/Types/group.types";
+import type { GroupOverview } from "@app/Types/group.types";
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/Groups";
 
@@ -24,8 +24,8 @@ export function HydrateFallback() {
 }
 
 export default function Groups() {
-    const allGroups = useLoaderData() as Group[]
-
+    const allGroups = useLoaderData() as GroupOverview[]
+    console.log(allGroups)
     return (
         <div className="w-full p-5">
             <span className="text-4xl"> Grouplist</span>
@@ -44,8 +44,9 @@ export default function Groups() {
                             id={group.id}
                             name={group.name}
                             icon={group.icon ? group.icon : group.name[0].toUpperCase()}
-                            created_by={null}
-                            description={null}
+                            created_by={group.created_by}
+                            description={group.description}
+                            members={group.members}
                         />
                     })
                     : <span> No Groups found! Make one per chance?</span>}
