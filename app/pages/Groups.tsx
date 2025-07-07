@@ -30,6 +30,7 @@ export default function Groups() {
         <div className="w-full p-5">
             <span className="text-4xl"> Grouplist</span>
             <GeneralButton
+                disabled={true}
                 text={"Create new Group"}
                 margin="ml-5"
             />

@@ -1,9 +1,12 @@
 
 import type { Route } from ".react-router/types/app/Pages/Groups/+types/OpenedGroup";
+import useModal from "@app/Hooks/useModal";
 import GeneralButton from "@app/Components/General/GeneralButton";
+import ExpenseModalContent from "@app/Components/GroupArea/Modals/ExpenseModalContent";
 import useScrollUp from "@app/Hooks/useScrollUp";
 import { getSingleGroupData } from "@app/Services/GroupsService";
 import { NavLink, Outlet, useLoaderData } from "react-router";
+import Modal from "@app/Components/General/Modal";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (!params.groupId) throw new Error("No group ID in URL");
@@ -14,18 +17,31 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
 export default function OpenedGroup() {
     const [transactions, userDictionary] = useLoaderData()
+    const [showModal, toggleModal, modalConfig, updateModalContent] = useModal()
     const { showTopBtn, scrollToTop } = useScrollUp(200)
     const groupIcon = "🪴"
     const groupName = "Household"
-    // const totalOwed = -500
 
     const handleClickUp = () => {
         scrollToTop()
     }
 
+    const handleOpenExpenseModal = () => {
+        updateModalContent({ title: "Add Expense", content: <ExpenseModalContent /> })
+        toggleModal()
+    }
+
+    const handleOpenAddMemberModal = () => { }
+    const handleOpenEditGroupModal = () => { }
+
     return (
 
         <div className="flex flex-col items-center w-full ">
+            <Modal
+                showModal={showModal}
+                children={modalConfig.content}
+                headerName={modalConfig.title}
+                toggleModal={toggleModal} />
             {/* Header */}
             <div className="w-full sticky top-0 z-20">
                 <div className="w-full h-1/3 z-1 flex flex-col md:flex-row">
@@ -37,9 +53,16 @@ export default function OpenedGroup() {
                         </div>
                     </div>
                     <div className="flex gap-5 items-center justify-center h-auto p-4 md:ml-auto md:mr-10 ">
-                        <GeneralButton text={"Add Expense"} />
-                        <GeneralButton text={"Add Member"} />
-                        <GeneralButton text={"Edit Group"} />
+                        <GeneralButton
+                            text={"Add Expense"}
+                            onClick={handleOpenExpenseModal}
+                        />
+                        <GeneralButton
+                            text={"Add Member"}
+                            onClick={handleOpenAddMemberModal} />
+                        <GeneralButton
+                            text={"Edit Group"}
+                            onClick={handleOpenEditGroupModal} />
                     </div>
                 </div>
 
