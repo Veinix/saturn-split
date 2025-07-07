@@ -17,9 +17,7 @@ export async function clientLoader() {
     if (!token) throw redirect("/auth/login")
 }
 
-export function HydrateFallback() {
-    return <LoadingScreen />;
-}
+
 
 export default function Home() {
     const decoded = useRouteLoaderData("rootLayout") as SessionToken

@@ -18,10 +18,7 @@ export async function clientLoader() {
     return await getAllGroups()
 }
 
-export function HydrateFallback() {
-    return (<LoadingScreen />);
 
-}
 
 export default function Groups() {
     const allGroups = useLoaderData() as GroupOverview[]
