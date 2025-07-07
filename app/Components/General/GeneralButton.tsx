@@ -10,7 +10,7 @@ export default function GeneralButton({ text, onClick, type = "button", margin }
     return (
         <button
             type={type}
-            className={`bg-orange-500 text-gray-100 rounded-md p-2 py-4 min-w-1/6 md:w-1/12 hover:cursor-pointer hover:bg-amber-700 active:bg-orange-400 ${margin}`}
+            className={`bg-orange-500 text-gray-100 rounded-md p-2 py-4 min-w-1/6 md:w-40 hover:cursor-pointer hover:bg-amber-700 active:bg-orange-400 ${margin}`}
             onClick={onClick}>
             {text}
         </button>

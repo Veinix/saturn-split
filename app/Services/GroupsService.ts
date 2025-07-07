@@ -1,4 +1,4 @@
-import type { ExtendedGroup, Group } from "@app/Types/group.types";
+import type { ExpensePayload, Group, GroupOverview } from "@app/Types/group.types";
 import api from "./Axios";
 
 // ****************************
@@ -25,7 +25,7 @@ export async function getAllGroups(): Promise<Group[]> {
 // * SINGLE GROUP METHODS
 // ****************************
 
-export async function getSingleGroupData(groupId: string): Promise<ExtendedGroup | void> {
+export async function getSingleGroupData(groupId: string): Promise<GroupOverview | void> {
     try {
         const res = await api.get(`/groups/${groupId}`)
         console.log(res.data)
@@ -41,5 +41,19 @@ export async function checkIfUserIsGroupMember(token: string, groupId: string): 
         return res.data
     } catch (error) {
         return false
+    }
+}
+
+export async function addMember(groupId: string, userId: string) {
+
+}
+
+export async function addExpense(expenseLayout: ExpensePayload) {
+    try {
+        const res = await api.post(`/groups/${expenseLayout.groupId}`, expenseLayout)
+        console.log(res.data)
+        return res.data
+    } catch (error) {
+        console.log(`[Group Service] Error adding expense`, error)
     }
 }

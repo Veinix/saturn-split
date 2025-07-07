@@ -23,3 +23,12 @@ export enum GroupMemberRoles {
     GroupOwner = "owner",
     GroupMember = "member",
 }
+
+// Expense types
+export type ExpensePayload = {
+    groupId: string,
+    lenderId: string,
+    amount: number,
+    transactionDate: string,
+    fullPaid: boolean,
+}
