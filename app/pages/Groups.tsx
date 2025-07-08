@@ -1,6 +1,5 @@
 
 import GeneralButton from "@app/Components/General/GeneralButton";
-import LoadingScreen from "@app/Components/General/LoadingScreen";
 import GroupListItem from "@app/Components/GroupArea/GroupListItem";
 import { getAllGroups } from "@app/Services/GroupsService";
 import type { GroupOverview } from "@app/Types/group.types";
