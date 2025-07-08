@@ -115,6 +115,10 @@ export default function ExpenseModalContent() {
         equally: "Equally",
         unequally: "Unequally",
     }
+
+    const handleClick = (e: HTMLFormElement) => {
+
+    }
     return (
         <>
             <form className="flex flex-col gap-4 ">
@@ -137,7 +141,9 @@ export default function ExpenseModalContent() {
                     </div> */}
                 </main>
 
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors md:w-1/4">
+                <button 
+                // onClick={handleClick}
+                 className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors md:w-1/4">
                     Add Expense
                 </button>
             </form>

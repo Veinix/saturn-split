@@ -4,13 +4,13 @@ import useModal from "@app/Hooks/useModal";
 import GeneralButton from "@app/Components/General/GeneralButton";
 import ExpenseModalContent from "@app/Components/GroupArea/Modals/ExpenseModalContent";
 import useScrollUp from "@app/Hooks/useScrollUp";
-import { getSingleGroupData } from "@app/Services/GroupsService";
 import { NavLink, Outlet, useLoaderData } from "react-router";
 import Modal from "@app/Components/General/Modal";
+import groupsService from "@app/Services/GroupsService";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (!params.groupId) throw new Error("No group ID in URL");
-    const singleGroupData = await getSingleGroupData(params.groupId);
+    const singleGroupData = await groupsService.getSingleGroupData(params.groupId);
     const userDictionary: { id: string, name: string }[] = []
     return [singleGroupData, userDictionary]
 }
@@ -58,9 +58,11 @@ export default function OpenedGroup() {
                             onClick={handleOpenExpenseModal}
                         />
                         <GeneralButton
+                            disabled={true}
                             text={"Add Member"}
                             onClick={handleOpenAddMemberModal} />
                         <GeneralButton
+                            disabled={true}
                             text={"Edit Group"}
                             onClick={handleOpenEditGroupModal} />
                     </div>

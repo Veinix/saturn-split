@@ -3,6 +3,7 @@ import {
     Links,
     Meta,
     Outlet,
+    redirect,
     Scripts,
     ScrollRestoration,
 } from "react-router";
@@ -11,6 +12,8 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import LoadingScreen from "./Components/General/LoadingScreen";
 import AuthProvider from "@app/Context/Auth/authContext";
+import authService from "@app/Services/AuthService";
+import groupsService from "@app/Services/GroupsService";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -41,6 +44,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </body>
         </html>
     );
+}
+
+export async function clientLoader() {
+    return {
+        token: authService.getToken(),
+        groupsData: await groupsService.getAllGroups(),
+    }
+
 }
 
 export function HydrateFallback() {

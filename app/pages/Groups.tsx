@@ -1,10 +1,9 @@
 
 import GeneralButton from "@app/Components/General/GeneralButton";
 import GroupListItem from "@app/Components/GroupArea/GroupListItem";
-import { getAllGroups } from "@app/Services/GroupsService";
-import type { GroupOverview } from "@app/Types/group.types";
-import { useLoaderData } from "react-router";
+import { useRouteLoaderData } from "react-router";
 import type { Route } from "./+types/Groups";
+import type { GroupOverview } from "@app/Types/group.types";
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -13,15 +12,9 @@ export function meta({ }: Route.MetaArgs) {
     ];
 }
 
-export async function clientLoader() {
-    return await getAllGroups()
-}
-
-
-
 export default function Groups() {
-    const allGroups = useLoaderData() as GroupOverview[]
-    console.log(allGroups)
+    const { groupsData } = useRouteLoaderData("root") as { groupsData: GroupOverview[] }
+    console.log(groupsData)
     return (
         <div className="w-full p-5">
             <span className="text-4xl"> Grouplist</span>
@@ -34,8 +27,8 @@ export default function Groups() {
                 flex flex-col pt-7 gap-4 
                 md:w-3xl md:flex-row
                 `}>
-                {allGroups.length > 0
-                    ? allGroups.map((group) => {
+                {groupsData.length > 0
+                    ? groupsData.map((group) => {
                         return <GroupListItem
                             key={group.id + group.name}
                             id={group.id}

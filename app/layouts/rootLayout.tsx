@@ -1,18 +1,27 @@
+import LoadingScreen from "@app/Components/General/LoadingScreen";
 import Navbar from "@app/Components/LayoutArea/Navbar";
-import authService from "@app/Services/AuthService";
-import { Outlet, redirect } from "react-router";
+import appConfig from "@app/Utilities/AppConfig";
+import { useLayoutEffect, useState } from "react";
+import { Outlet, useNavigate, type Session } from "react-router";
 
-export async function clientLoader() {
-    const cached = authService.getToken();
-    if (cached) {
-        const decoded = authService.decodeAuthToken(cached);
-        return decoded
-    }
-    const token = authService.getToken()
-    if (!token) return redirect("/auth/login")
-}
+
 
 export default function RootLayout() {
+    const navigate = useNavigate();
+    const [initialized, setInitialized] = useState(false);
+
+    useLayoutEffect(() => {
+        setInitialized(false);
+        const tokenStr = localStorage.getItem(appConfig.localStorageJWTKey);
+        if (!tokenStr) {
+            navigate("/auth/login", { replace: true });
+            return
+        }
+        setInitialized(true);
+    }, [navigate]);
+
+    if (!initialized) return <LoadingScreen />;
+
     return (
         <div className='min-h-screen flex flex-col'>
             <Navbar />

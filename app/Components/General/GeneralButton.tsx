@@ -17,7 +17,7 @@ export default function GeneralButton({ text, onClick, type = "button", margin, 
             disabled={disabled ?? false}
             type={type}
             className={(disabled ? disabledStyling : enabledStyling) + baseStyling}
-            onClick={onClick}>
+            onClick={!disabled ? onClick : () => { }}>
             {text}
         </button>
     )

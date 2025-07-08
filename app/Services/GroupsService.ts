@@ -5,7 +5,7 @@ import api from "./Axios";
 // * GENERAL GROUP METHODS
 // ****************************
 // Method to get all groups
-export async function getAllGroups(): Promise<Group[]> {
+async function getAllGroups(): Promise<Group[]> {
     try {
         const res = await api.get("/groups")
         return res.data
@@ -25,7 +25,7 @@ export async function getAllGroups(): Promise<Group[]> {
 // * SINGLE GROUP METHODS
 // ****************************
 
-export async function getSingleGroupData(groupId: string): Promise<GroupOverview | void> {
+async function getSingleGroupData(groupId: string): Promise<GroupOverview | void> {
     try {
         const res = await api.get(`/groups/${groupId}`)
         console.log(res.data)
@@ -35,7 +35,7 @@ export async function getSingleGroupData(groupId: string): Promise<GroupOverview
     }
 }
 
-export async function checkIfUserIsGroupMember(token: string, groupId: string): Promise<Boolean> {
+async function checkIfUserIsGroupMember(token: string, groupId: string): Promise<Boolean> {
     try {
         const res = await api.post(`/groups/${groupId}`, token)
         return res.data
@@ -44,11 +44,11 @@ export async function checkIfUserIsGroupMember(token: string, groupId: string): 
     }
 }
 
-export async function addMember(groupId: string, userId: string) {
+async function addMember(groupId: string, userId: string) {
 
 }
 
-export async function addExpense(expenseLayout: ExpensePayload) {
+async function addExpense(expenseLayout: ExpensePayload) {
     try {
         const res = await api.post(`/groups/${expenseLayout.groupId}`, expenseLayout)
         console.log(res.data)
@@ -57,3 +57,11 @@ export async function addExpense(expenseLayout: ExpensePayload) {
         console.log(`[Group Service] Error adding expense`, error)
     }
 }
+const groupsService = {
+    getAllGroups,
+    getSingleGroupData,
+    checkIfUserIsGroupMember,
+    addMember,
+    addExpense
+}
+export default groupsService

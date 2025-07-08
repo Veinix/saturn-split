@@ -23,17 +23,4 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Response interceptor: Handle expired/invalid token
-// api.interceptors.response.use(
-//     (response) => response,
-//     (error) => {
-//         if (error.response && error.response.status === 401) {
-//             authService.setToken(null); // Wipe token
-//             // Optionally redirect to login, show modal, or notify
-//             // window.location.href = './auth/login';
-//         }
-//         return Promise.reject(error);
-//     }
-// );
-
 export default api

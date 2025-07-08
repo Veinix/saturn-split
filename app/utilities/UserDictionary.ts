@@ -1,6 +1,6 @@
 import type { User } from "@app/Types/auth.types";
 import type { Group, Transaction } from "@app/Types/group.types";
-import type { LoaderFunction } from "react-router";
+
 
 type UserIDPair = { id: string, name: string };
 
