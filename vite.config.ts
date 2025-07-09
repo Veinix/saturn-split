@@ -3,12 +3,14 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-
+import { cloudflare } from "@cloudflare/vite-plugin";
 export default defineConfig({
     plugins: [
         tailwindcss(),
         reactRouter(),
-        tsconfigPaths()],
+        tsconfigPaths(),
+        cloudflare(),
+    ],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "app"),
