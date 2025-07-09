@@ -1,4 +1,4 @@
-import type { ExpensePayload, Group, GroupOverview } from "@app/types/group.types";
+import type { ExpensePayload, Group, GroupOverview } from "@app/Types/group.types";
 import api from "./Axios";
 
 // ****************************

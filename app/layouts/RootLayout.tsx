@@ -1,6 +1,6 @@
-import LoadingScreen from "@app/components/General/LoadingScreen";
-import Navbar from "@app/components/LayoutArea/Navbar";
-import appConfig from "@app/utilities/AppConfig";
+import LoadingScreen from "@app/Components/General/LoadingScreen";
+import Navbar from "@app/Components/LayoutArea/Navbar";
+import appConfig from "@app/Utilities/AppConfig";
 import { useLayoutEffect, useState } from "react";
 import { Outlet, useNavigate, type Session } from "react-router";
 

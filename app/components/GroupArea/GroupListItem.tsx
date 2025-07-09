@@ -1,4 +1,4 @@
-import type { GroupOverview } from "@app/types/group.types"
+import type { GroupOverview } from "@app/Types/group.types"
 import { NavLink } from "react-router"
 
 export default function GroupListItem({ id, name, description, icon, members, created_by }: GroupOverview) {

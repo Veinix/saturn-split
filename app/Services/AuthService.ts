@@ -1,7 +1,7 @@
-import appConfig from "@app/utilities/AppConfig";
-import { UserRoles, type LoginDetails, type RegisterUser, type SessionToken } from "@app/types/auth.types"
+import appConfig from "@app/Utilities/AppConfig";
+import { UserRoles, type LoginDetails, type RegisterUser, type SessionToken } from "@app/Types/auth.types"
 import api from "./Axios"
-import { Logger } from "@app/utilities/Logger";
+import { Logger } from "@app/Utilities/Logger";
 
 let inMemoryToken: string | null = null;
 

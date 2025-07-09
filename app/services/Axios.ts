@@ -1,5 +1,5 @@
-import authService from "@app/services/AuthService";
-import appConfig from "@app/utilities/AppConfig";
+import authService from "@app/Services/AuthService";
+import appConfig from "@app/Utilities/AppConfig";
 import axios from "axios";
 
 

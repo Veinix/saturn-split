@@ -1,6 +1,6 @@
-import { AuthContext, AuthDispatchContext } from "@app/context/Auth/authContext";
-import authService from "@app/services/AuthService";
-import { AuthActionEnum, type LoginDetails } from "@app/types/auth.types";
+import { AuthContext, AuthDispatchContext } from "@app/Context/Auth/authContext";
+import authService from "@app/Services/AuthService";
+import { AuthActionEnum, type LoginDetails } from "@app/Types/auth.types";
 import { useCallback, useContext } from "react";
 
 export const useAuth = () => {

@@ -1,6 +1,6 @@
 import { useRouteLoaderData } from "react-router";
 import type { Route } from "../+types/root";
-import authService from "@app/services/AuthService";
+import authService from "@app/Services/AuthService";
 
 
 export function meta({ }: Route.MetaArgs) {

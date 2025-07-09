@@ -10,10 +10,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import LoadingScreen from "./components/General/LoadingScreen";
-import AuthProvider from "@app/context/Auth/authContext";
-import authService from "@app/services/AuthService";
-import groupsService from "@app/services/GroupsService";
+import LoadingScreen from "./Components/General/LoadingScreen";
+import AuthProvider from "@app/Context/Auth/authContext";
+import authService from "@app/Services/AuthService";
+import groupsService from "@app/Services/GroupsService";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },

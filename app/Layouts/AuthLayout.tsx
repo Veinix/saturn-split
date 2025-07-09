@@ -1,5 +1,5 @@
-import LoadingScreen from "@app/components/General/LoadingScreen";
-import appConfig from "@app/utilities/AppConfig";
+import LoadingScreen from "@app/Components/General/LoadingScreen";
+import appConfig from "@app/Utilities/AppConfig";
 import { useState, useLayoutEffect } from "react";
 import { Outlet, redirect, useNavigate } from "react-router";
 

@@ -1,4 +1,4 @@
-import { type AuthState, type AuthAction, AuthActionEnum } from "@app/types/auth.types";
+import { type AuthState, type AuthAction, AuthActionEnum } from "@app/Types/auth.types";
 
 
 

@@ -1,6 +1,6 @@
-import { authReducer } from "@app/context/Auth/authReducer";
-import authService from "@app/services/AuthService";
-import { AuthActionEnum, type AuthAction, type AuthState } from "@app/types/auth.types";
+import { authReducer } from "@app/Context/Auth/authReducer";
+import authService from "@app/Services/AuthService";
+import { AuthActionEnum, type AuthAction, type AuthState } from "@app/Types/auth.types";
 import { createContext, useEffect, useReducer, type Dispatch, type ReactNode } from "react";
 import { useRouteLoaderData } from "react-router";
 
