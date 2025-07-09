@@ -6,3 +6,7 @@
 /build/
 
 .ignoreGit
+
+.wrangler
+
+.dev.vars*
