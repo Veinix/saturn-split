@@ -1,4 +1,4 @@
-import authService from "@app/Services/AuthService";
+import authService from "@app/services/AuthService";
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
 
 

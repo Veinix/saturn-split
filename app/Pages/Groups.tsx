@@ -1,9 +1,9 @@
 
-import GeneralButton from "@app/Components/General/GeneralButton";
-import GroupListItem from "@app/Components/GroupArea/GroupListItem";
+import GeneralButton from "@app/components/General/GeneralButton";
+import GroupListItem from "@app/components/GroupArea/GroupListItem";
 import { useRouteLoaderData } from "react-router";
 import type { Route } from "./+types/Groups";
-import type { GroupOverview } from "@app/Types/group.types";
+import type { GroupOverview } from "@app/types/group.types";
 
 export function meta({ }: Route.MetaArgs) {
     return [

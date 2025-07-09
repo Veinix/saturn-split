@@ -5,9 +5,9 @@ import {
     type RouteConfig,
     prefix,
 } from "@react-router/dev/routes";
-import authRoutes from "./Routes/authRoutes";
-import groupRoutes from "./Routes/groupRoutes";
-import otherRoutes from "./Routes/otherRoutes";
+import authRoutes from "./routes/authRoutes";
+import groupRoutes from "./routes/groupRoutes";
+import otherRoutes from "./routes/otherRoutes";
 
 export default [
     layout("./Layouts/RootLayout.tsx", { id: "rootLayout" }, [

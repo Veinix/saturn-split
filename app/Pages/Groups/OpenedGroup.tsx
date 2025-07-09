@@ -1,12 +1,12 @@
 
 import type { Route } from ".react-router/types/app/Pages/Groups/+types/OpenedGroup";
-import useModal from "@app/Hooks/useModal";
-import GeneralButton from "@app/Components/General/GeneralButton";
-import ExpenseModalContent from "@app/Components/GroupArea/Modals/ExpenseModalContent";
-import useScrollUp from "@app/Hooks/useScrollUp";
+import useModal from "@app/hooks/useModal";
+import GeneralButton from "@app/components/General/GeneralButton";
+import ExpenseModalContent from "@app/components/GroupArea/Modals/ExpenseModalContent";
+import useScrollUp from "@app/hooks/useScrollUp";
 import { NavLink, Outlet, useLoaderData } from "react-router";
-import Modal from "@app/Components/General/Modal";
-import groupsService from "@app/Services/GroupsService";
+import Modal from "@app/components/General/Modal";
+import groupsService from "@app/services/GroupsService";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (!params.groupId) throw new Error("No group ID in URL");

@@ -1,5 +1,5 @@
-import type { User } from "@app/Types/auth.types";
-import type { Group, Transaction } from "@app/Types/group.types";
+import type { User } from "@app/types/auth.types";
+import type { Group, Transaction } from "@app/types/group.types";
 
 
 type UserIDPair = { id: string, name: string };

@@ -1,5 +1,5 @@
-import GeneralButton from "@app/Components/General/GeneralButton"
-import authService from "@app/Services/AuthService"
+import GeneralButton from "@app/components/General/GeneralButton"
+import authService from "@app/services/AuthService"
 import { Form, redirect } from 'react-router'
 
 export default function Profile() {

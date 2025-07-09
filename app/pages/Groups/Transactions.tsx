@@ -1,5 +1,5 @@
-import type { Transaction } from "@app/Types/group.types";
-import appConfig from "@app/Utilities/AppConfig";
+import type { Transaction } from "@app/types/group.types";
+import appConfig from "@app/utilities/AppConfig";
 import { useOutletContext, useRouteLoaderData } from "react-router";
 
 export default function Transactions() {

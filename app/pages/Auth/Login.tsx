@@ -1,7 +1,7 @@
 import { data, NavLink, redirect, useFetcher } from "react-router"
 import type { Route } from "./+types/Login"
-import { LoginSchema } from "@app/Schemas/LoginSchema"
-import authService from "@app/Services/AuthService"
+import { LoginSchema } from "@app/schemas/LoginSchema"
+import authService from "@app/services/AuthService"
 
 export function meta({ }: Route.MetaArgs) {
     return [

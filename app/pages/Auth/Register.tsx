@@ -1,11 +1,11 @@
-import LabelledInput from "@app/Components/General/LabelledInput";
-import appConfig from "@app/Utilities/AppConfig";
+import LabelledInput from "@app/components/General/LabelledInput";
+import appConfig from "@app/utilities/AppConfig";
 import { useState } from "react";
 import { data, Form, NavLink, redirect, useFetcher } from "react-router"
 import type { Route } from "./+types/Register";
-import LoadingScreen from "@app/Components/General/LoadingScreen";
-import authService from "@app/Services/AuthService";
-import { UserRoles, type RegisterUser } from "@app/Types/auth.types";
+import LoadingScreen from "@app/components/General/LoadingScreen";
+import authService from "@app/services/AuthService";
+import { UserRoles, type RegisterUser } from "@app/types/auth.types";
 
 export function meta({ }: Route.MetaArgs) {
     return [
