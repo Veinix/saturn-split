@@ -9,7 +9,6 @@ export default defineConfig({
         tailwindcss(),
         reactRouter(),
         tsconfigPaths()],
-    root: "app",
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "app"),
