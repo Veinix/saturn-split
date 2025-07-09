@@ -11,6 +11,7 @@ export default defineConfig({
         tsconfigPaths(),
         cloudflare(),
     ],
+base: "/",
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "app"),
