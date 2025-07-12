@@ -41,7 +41,8 @@ export default function OpenedGroup() {
                 showModal={showModal}
                 children={modalConfig.content}
                 headerName={modalConfig.title}
-                toggleModal={toggleModal} />
+                toggleModal={toggleModal}
+            />
             {/* Header */}
             <div className="w-full sticky top-0 z-20">
                 <div className="w-full h-1/3 z-1 flex flex-col md:flex-row">

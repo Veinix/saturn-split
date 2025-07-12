@@ -1,4 +1,4 @@
-import type { ExpensePayload, Group, GroupOverview } from "@app/Types/group.types";
+import type { ExpensePayload, FullExpensePayload, Group, GroupOverview } from "@app/Types/group.types";
 import api from "./Axios";
 
 // ****************************
@@ -48,7 +48,7 @@ async function addMember(groupId: string, userId: string) {
 
 }
 
-async function addExpense(expenseLayout: ExpensePayload) {
+async function addExpense(expenseLayout: FullExpensePayload) {
     try {
         const res = await api.post(`/groups/${expenseLayout.groupId}`, expenseLayout)
         console.log(res.data)
@@ -57,6 +57,7 @@ async function addExpense(expenseLayout: ExpensePayload) {
         console.log(`[Group Service] Error adding expense`, error)
     }
 }
+
 const groupsService = {
     getAllGroups,
     getSingleGroupData,

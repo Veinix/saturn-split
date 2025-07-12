@@ -2,7 +2,6 @@ import { authReducer } from "@app/Context/Auth/authReducer";
 import authService from "@app/Services/AuthService";
 import { AuthActionEnum, type AuthAction, type AuthState } from "@app/Types/auth.types";
 import { createContext, useEffect, useReducer, type Dispatch, type ReactNode } from "react";
-import { useRouteLoaderData } from "react-router";
 
 export const initialAuthState: AuthState = {
     token: null,

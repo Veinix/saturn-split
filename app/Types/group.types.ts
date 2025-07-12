@@ -32,3 +32,16 @@ export type ExpensePayload = {
     transactionDate: string,
     fullPaid: boolean,
 }
+
+export type FullExpensePayload = {
+    groupId?: string,
+    lenderId: string,
+    borrowers: {
+        borrowerId: string,
+        share: number,
+    }[],
+    amount: number,
+    transactionDate: string,
+    expenseName: string,
+
+}

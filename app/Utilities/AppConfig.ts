@@ -1,33 +1,15 @@
 import { LanguageOptions } from "./i18n"
-type FrontendHostType = "localhost" | "192.168.50.156" | string & {}
-type BackendHostType = "localhost" | "192.168.50.156" | "169.254.5.254" | string & {}
+
 class AppConfig {
-    private testUsername: string = "aviles"
-    private testPassword: string = "password"
-    private testName: string = "David Aviles"
-
-    public testUser = {
-        username: this.testUsername,
-        password: this.testPassword,
-        name: this.testName,
-    }
-
-    public frontendHost: FrontendHostType = "localhost"
-    public baseUrl: string = `http://${this.frontendHost}:5173/`
-
-    // public backendHost: BackendHostType = "192.168.50.156"
+    public baseUrl: string = `http://localhost:5173/`
     public baseApiEndpoint: string = `https://saturn-split-backend.onrender.com/api`
-
     public defaultCurrency = {
         symbol: "₪",
         name: "New Israeli Shekel",
         ticker: "ILS"
     }
-
     public defaultLanguage = LanguageOptions.English
-
     public localStorageJWTKey: string = "jwt_session"
-
     public favoriteColors: { name: string, value: string }[] = [
         { name: "Orange", value: "#FF5733" },
         { name: "Red", value: "#ef4444" },
@@ -38,5 +20,18 @@ class AppConfig {
     ];
 }
 
-const appConfig = new AppConfig()
+class DevelopmentConfig extends AppConfig {
+    public baseUrl: string = "http://localhost:3000/"
+    public baseApiEndpoint: string = "http://localhost:3000/api"
+    public currentEnvironment: string = "development"
+}
+
+class ProductionConfig extends AppConfig {
+    public baseUrl: string = "https://saturn-split-backend.onrender.com"
+    public baseApiEndpoint: string = "https://saturn-split-backend.onrender.com/api"
+    public currentEnvironment: string = "production"
+}
+
+const isDevelopment = (!process.env.NODE_ENV || process.env.NODE_ENV) === "development";
+const appConfig = isDevelopment ? new DevelopmentConfig() : new ProductionConfig()
 export default appConfig

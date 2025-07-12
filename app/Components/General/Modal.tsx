@@ -4,16 +4,17 @@ interface ModalProps {
     children?: ReactNode,
     headerName?: string,
     showModal?: boolean,
-    toggleModal: () => void
+    toggleModal: () => void,
 }
+const headerTextColor = "text-orange-600 "
 export default function Modal({ children, headerName, showModal, toggleModal }: ModalProps) {
     if (!showModal) return null;
     return (
         <div className="fixed inset-0 bg-[rgba(65,65,65,0.7)] flex items-center justify-center z-50">
-            <main className="w-full md:w-2/3 h-full md:min-h-1/3 md:h-auto bg-amber-700 rounded-lg md:pb-5">
+            <main className="w-full md:w-2/3 h-full md:min-h-1/3 md:h-auto bg-black md:border-amber-700 md:border-3 rounded-lg md:pb-5">
                 <header className="w-full pt-2 px-4 flex justify-end">
-                    <h2 className={`
-                        flex items-center justify-center w-full text-3xl
+                    <h2 className={headerTextColor + `
+                        flex items-center justify-center w-full text-3xl 
                         `}
                     > {headerName}</h2>
                     <button className={`

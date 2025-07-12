@@ -15,8 +15,6 @@ export default function Login() {
     const errors = fetcher.data?.errors
     const isSubmitting = fetcher.state === "submitting"
 
-
-
     return (
         <div className="flex flex-col mx-10 my-7 w-full px-12">
 

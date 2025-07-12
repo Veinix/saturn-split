@@ -1,3 +1,7 @@
+import type { Route } from ".react-router/types/app/Pages/Groups/+types/OpenedGroup";
+import groupsService from "@app/Services/GroupsService";
+import { data, redirect, useFetcher } from "react-router";
+
 type SelectExpenseCategoryProps = {
     categoryOptions: {
         household: string;
@@ -8,18 +12,21 @@ type SelectExpenseCategoryProps = {
         other?: string;
     }
 }
+const headerTextColor = "text-orange-600 "
+const textColor = "text-amber-600 "
 const SelectExpenseCategory = ({ categoryOptions }: SelectExpenseCategoryProps) => {
     return (
         <div className="w-full md:w-1/3">
             <label
                 htmlFor="expenseCategory"
-                className="block text-lg  mb-1">
+                className={`${headerTextColor} text-lg`}>
                 Category
             </label>
 
             <select
                 id="expenseCategory"
-                className="w-full border border-gray-300 rounded p-2">
+                name="expenseCategory"
+                className={textColor + " w-full border border-gray-300 rounded p-2"}>
                 <option value={categoryOptions.household}
                     className="bg-gray-600">{categoryOptions.household}</option>
                 <option value={categoryOptions.groceries}
@@ -32,55 +39,69 @@ const SelectExpenseCategory = ({ categoryOptions }: SelectExpenseCategoryProps) 
 
 }
 
-const SelectSplitType = ({ splitOptions }: { splitOptions: { equally: string; unequally: string } }) => {
-    return (
-        <div className="w-full md:w-1/3">
-            <label
-                htmlFor="expenseSplit"
-                className="block text-lg font-medium ">Split</label>
-            <select
-                id="expenseSplit"
-                className="w-full border border-gray-300 rounded p-2">
-                <option
-                    value={splitOptions.equally}
-                    className="bg-gray-600">{splitOptions.equally}</option>
-                <option
-                    value={splitOptions.unequally}
-                    className="bg-gray-600">{splitOptions.unequally}</option>
-            </select>
-        </div>
-    )
-}
+
 
 const ExpenseNameInput = () => {
     return (
         <div className="w-full">
             <label
                 htmlFor="expenseName"
-                className="text-lg mb-1 md:mb-0 w-full flex items-center">
+                className={headerTextColor + "text-lg"}>
                 Expense Name
             </label>
             <input
                 id="expenseName"
+                name="expenseName"
                 type="text"
-                className="w-full p-2 border border-gray-300 rounded " />
+                className={textColor + "w-full p-2 border border-gray-300 rounded "} />
         </div>
     )
 }
 
 const ExpenseAmountInput = () => {
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-col flex-1  ">
             <label
                 htmlFor="expenseAmount"
-                className="text-lg mb-1 md:mb-0  flex items-center">
+                className={headerTextColor + "text-lg"}>
                 Amount
             </label>
             <input
                 id="expenseAmount"
+                name="expenseAmount"
                 placeholder="0.00"
                 type="number"
-                className="w-full p-2 border border-gray-300 rounded   " />
+                className={textColor + "w-full px-3 py-2 h-10 border border-gray-300 rounded"} />
+        </div>
+    )
+}
+const SelectSplitType = ({ splitOptions }: { splitOptions: { equally: string; unequally: string } }) => {
+    return (
+        <div className="w-full flex flex-col flex-1 md:w-1/3  ">
+            <label
+                htmlFor="expenseSplit"
+                className={headerTextColor + "text-lg "}>
+                Split
+            </label>
+            <select
+                id="expenseSplit"
+                name="expenseSplit"
+                className={
+                    textColor +
+                    "w-full px-3 py-2 h-10 border border-gray-300 rounded bg-none " +
+                    "[&>option]:p-2 " +
+                    "[&>option]:text-gray-800 " +
+                    "[&>option]:bg-none " +
+                    "[&>option:hover]:bg-gray-100"
+                }>
+                <option
+                    value={splitOptions.equally}
+                    className=" ">{splitOptions.equally}</option>
+                <option
+                    disabled
+                    value={splitOptions.unequally}
+                    className=" ">{splitOptions.unequally}</option>
+            </select>
         </div>
     )
 }
@@ -90,18 +111,21 @@ const ExpenseDescriptionInput = () => {
         <div className="w-full ">
             <label
                 htmlFor="expenseDescription"
-                className="text-lg mb-1 flex items-center">
+                className={headerTextColor + " text-lg"}>
                 Description
             </label>
             <textarea
                 id="expenseDescription"
+                name="expenseDescription"
                 rows={3}
-                className="w-full p-2 border border-gray-300 rounded md:h-1/2 resize-none overflow-y-auto" />
+                className={textColor + "w-full p-2 border border-gray-300 rounded md:h-1/2 resize-none overflow-y-auto"} />
         </div>
     )
 }
 
 export default function ExpenseModalContent() {
+    const fetcher = useFetcher()
+
     const categoryOptions = {
         household: "Household",
         groceries: "Groceries",
@@ -116,38 +140,79 @@ export default function ExpenseModalContent() {
         unequally: "Unequally",
     }
 
-    const handleClick = (e: HTMLFormElement) => {
-
-    }
     return (
         <>
-            <form className="flex flex-col gap-4 ">
-                <main className="md:flex md:flex-row md:gap-4">
-                    <section className="md:w-2/3 md:flex md:flex-col md:gap-2">
-                        <div className="flex flex-col gap-4 md:flex-row md:w-full md:items-center">
-                            <ExpenseNameInput />
-                            <SelectExpenseCategory
-                                categoryOptions={categoryOptions}
-                            />
-                        </div>
-                        <div className="flex flex-col gap-4 md:flex-row md:w-full md:items-center">
-                            <SelectSplitType splitOptions={splitOptions} />
-                            <ExpenseAmountInput />
-                        </div>
-                        <ExpenseDescriptionInput />
-                    </section>
-                    {/* <div className="border-l-2 border-gray-950 hidden md:flex p-4">
-                        Example
-                    </div> */}
+            <fetcher.Form className="flex flex-col gap-4 ">
+                <main className="flex flex-col md:flex-row gap-2 md:gap-4 md:w-2/3">
+                    <ExpenseNameInput />
+                    <SelectExpenseCategory
+                        categoryOptions={categoryOptions}
+                    />
+                    <div className="flex gap-4 items-stretch w-full">
+                        <SelectSplitType splitOptions={splitOptions} />
+                        <ExpenseAmountInput />
+                    </div>
+                    <ExpenseDescriptionInput />
                 </main>
 
-                <button 
-                // onClick={handleClick}
-                 className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors md:w-1/4">
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors md:w-1/4">
                     Add Expense
                 </button>
-            </form>
+            </fetcher.Form>
         </ >
     )
 }
 
+export async function clientAction({
+    request,
+}: Route.ActionArgs) {
+    const formData = await request.formData()
+
+    const expenseCategory = String(formData.get("expenseCategory"))
+    const expenseName = String(formData.get("expenseName"))
+    const expenseSplit = String(formData.get("expenseSplit"))
+    const expenseDescription = String(formData.get("expenseDescription"))
+    const expenseAmount = Number(formData.get("expenseAmount"))
+
+    const errors: Record<string, string> = {}
+
+    if (!expenseCategory) {
+        errors.expenseCategory = "Category is required"
+    }
+
+    if (!expenseName) {
+        errors.expenseName = "Expenses require names"
+    } else if (expenseName.length < 3) {
+        errors.expenseName = "Expense Name must be at least 3 characters long"
+    }
+
+    if (!expenseSplit) {
+        errors.expenseSplit = "Split is required"
+    }
+
+    if (!expenseAmount) {
+        errors.expenseAmount = "Amount is required"
+    }
+
+    if (Object.keys(errors).length > 0) {
+        return data({ errors }, { status: 400 });
+    }
+
+    const res = await groupsService.addExpense({
+        lenderId: "string",
+        expenseName: expenseName,
+        borrowers: [],
+        amount: expenseAmount,
+        transactionDate: "",
+    });
+    if (!res) {
+        return data("Failed to add expense", { status: 500 });
+    } else {
+        console.log(res)
+    }
+
+    return redirect("/")
+
+}
